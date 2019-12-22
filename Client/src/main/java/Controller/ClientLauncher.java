@@ -25,6 +25,7 @@ public class ClientLauncher extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception{
        // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+        // test
         StackPane pane = new StackPane();
         primaryStage.setTitle("Hello World");
         Button button = new Button();

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class SceneService {
     public static String scene1 = "sample.fxml";
-    public static String scene2 = "scene2.fxml";
+    public static String scene2 = "loginScreen.fxml";
 
     public static Scene controller;
 

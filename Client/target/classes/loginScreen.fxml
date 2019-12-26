@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="bg" stylesheets="@style/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="bg" stylesheets="@style/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginView">
    <children>
       <AnchorPane layoutX="475.0" layoutY="27.0" prefHeight="446.0" prefWidth="386.0" style="-fx-background-color: #ededed; -fx-background-radius: 7;" styleClass="box" stylesheets="@style/main.css">
          <children>
@@ -22,13 +22,13 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Button layoutX="119.0" layoutY="274.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Sign In" textFill="WHITE">
+            <Button layoutX="119.0" layoutY="274.0" mnemonicParsing="false" onAction="#signInButton" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Sign In" textFill="WHITE">
                <styleClass>
                   <String fx:value="signInButton" />
                   <String fx:value="button" />
                </styleClass></Button>
             <Label layoutX="197.0" layoutY="320.0" text="OR" />
-            <Button layoutX="119.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Register" textFill="WHITE">
+            <Button layoutX="119.0" layoutY="350.0" mnemonicParsing="false" onAction="#goToRegisterScreen" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Register" textFill="WHITE">
                <styleClass>
                   <String fx:value="registerButton" />
                   <String fx:value="button" />

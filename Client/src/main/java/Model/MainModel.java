@@ -1,4 +1,4 @@
-package Model.MainView;
+package Model;
 
 import Presenter.MainView.MainPresenter;
 

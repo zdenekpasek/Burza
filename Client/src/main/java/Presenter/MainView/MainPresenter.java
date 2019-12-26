@@ -1,6 +1,6 @@
 package Presenter.MainView;
 
-import Model.MainView.MainModel;
+import Model.MainModel;
 import Services.SceneService;
 import View.MainView;
 
@@ -17,7 +17,7 @@ public class MainPresenter {
     public void openWindow(){
         model.writeToDB();
         try {
-            SceneService.switchScene(SceneService.scene2);
+            SceneService.switchScene(SceneService.loginScreen);
         }catch (Exception e){
 
         }

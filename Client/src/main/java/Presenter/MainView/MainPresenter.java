@@ -14,10 +14,10 @@ public class MainPresenter {
         model = new MainModel(this);
     }
 
-    public void openWindow(){
+    public void openWindow(String scene){
         model.writeToDB();
         try {
-            SceneService.switchScene(SceneService.loginScreen);
+            SceneService.switchScene(scene);
         }catch (Exception e){
 
         }

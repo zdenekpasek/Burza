@@ -10,6 +10,7 @@ public class SceneService {
     public static String scene1 = "sample.fxml";
     public static String loginScreen = "loginScreen.fxml";
     public static String registerScreen = "registerScreen.fxml";
+    public static String mainScreen = "mainScreen.fxml";
 
     public static Scene controller;
 

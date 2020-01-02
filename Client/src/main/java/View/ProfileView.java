@@ -1,15 +1,15 @@
 package View;
 
-import Presenter.MainView.MainPresenter;
+import Presenter.ProfilePresenter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainView implements Initializable {
+public class ProfileView implements Initializable {
 
-    private MainPresenter presenter;
+    private ProfilePresenter presenter;
 
     public void goToProfileScreen(){
         presenter.openWindow("profileScreen.fxml");
@@ -21,8 +21,10 @@ public class MainView implements Initializable {
         presenter.openWindow("ordersScreen.fxml");
     }
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        presenter = new MainPresenter(this);
+        presenter = new ProfilePresenter(this);
     }
 }

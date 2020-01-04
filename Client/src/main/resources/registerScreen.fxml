@@ -15,6 +15,11 @@
    <children>
       <AnchorPane layoutX="475.0" layoutY="27.0" prefHeight="446.0" prefWidth="386.0" style="-fx-background-color: #ededed; -fx-background-radius: 7;" styleClass="box" stylesheets="@style/main.css">
          <children>
+            <Label fx:id="errorPassword" layoutX="106.0" layoutY="371.0" prefHeight="74.0" prefWidth="267.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
             <PasswordField fx:id="passwordInput" layoutX="67.0" layoutY="249.0" prefHeight="40.0" prefWidth="279.0" promptText="password" style="-fx-background-radius: 8;" />
             <TextField fx:id="emailInput" layoutX="67.0" layoutY="80.0" prefHeight="40.0" prefWidth="279.0" promptText="email" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
             <Label layoutX="148.0" layoutY="17.0" text="Register" textFill="#1f4668">
@@ -22,7 +27,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Button layoutX="249.0" layoutY="341.0" maxHeight="39.0" maxWidth="52.0" minHeight="39.0" minWidth="52.0" mnemonicParsing="false" onAction="#goToSignInScreen" prefHeight="39.0" prefWidth="52.0" stylesheets="@style/main.css" text="here" textFill="WHITE">
+            <Button layoutX="249.0" layoutY="337.0" maxHeight="39.0" maxWidth="52.0" minHeight="39.0" minWidth="52.0" mnemonicParsing="false" onAction="#goToSignInScreen" prefHeight="39.0" prefWidth="52.0" stylesheets="@style/main.css" text="here" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -57,8 +62,22 @@
                   <Image url="@img/ic_home_24px.png" />
                </image>
             </ImageView>
-            <Label fx:id="errorLabel" layoutX="54.0" layoutY="389.0" prefHeight="50.0" prefWidth="279.0" />
-            <Label layoutX="104.0" layoutY="352.0" prefHeight="17.0" prefWidth="154.0" text="Already a member? Login in " />
+            <Label layoutX="104.0" layoutY="348.0" prefHeight="17.0" prefWidth="154.0" text="Already a member? Login in " />
+            <Label fx:id="errorEmail" layoutX="145.0" layoutY="113.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorName" layoutX="148.0" layoutY="169.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorAdress" layoutX="145.0" layoutY="225.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />

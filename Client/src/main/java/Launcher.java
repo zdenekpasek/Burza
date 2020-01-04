@@ -24,7 +24,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("registerScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainScreen.fxml"));
         primaryStage.setScene(new Scene(root));
         SceneService.setController(primaryStage.getScene());
         primaryStage.setTitle("E-Flea Market");

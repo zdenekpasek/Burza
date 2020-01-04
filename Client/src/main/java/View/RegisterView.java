@@ -30,48 +30,16 @@ public class RegisterView implements Initializable {
     private PasswordField passwordInput;
 
     @FXML
-    private Label errorLabel;
+    private Label errorPassword;
 
-    public TextField getEmailInput() {
-        return emailInput;
-    }
+    @FXML
+    private Label errorEmail;
 
-    public void setEmailInput(TextField emailInput) {
-        this.emailInput = emailInput;
-    }
+    @FXML
+    private Label errorName;
 
-    public TextField getNameInput() {
-        return nameInput;
-    }
-
-    public void setNameInput(TextField nameInput) {
-        this.nameInput = nameInput;
-    }
-
-    public TextField getAdressInput() {
-        return adressInput;
-    }
-
-    public void setAdressInput(TextField adressInput) {
-        this.adressInput = adressInput;
-    }
-
-    public PasswordField getPasswordInput() {
-        return passwordInput;
-    }
-
-    public void setPasswordInput(PasswordField passwordInput) {
-        this.passwordInput = passwordInput;
-    }
-
-    public Label getErrorLabel() {
-        return errorLabel;
-    }
-
-    public void setErrorLabel(Label errorLabel) {
-        this.errorLabel = errorLabel;
-    }
-
+    @FXML
+    private Label errorAdress;
 
     public void goToSignInScreen(){
         presenter.openWindow("loginScreen.fxml");
@@ -83,8 +51,8 @@ public class RegisterView implements Initializable {
         if(mtch.find()) {
             return true;
         } else{
-            errorLabel.setVisible(true);
-            errorLabel.setText("Email is not valid!");
+            errorEmail.setVisible(true);
+            errorEmail.setText("Email is not valid!");
             emailInput.clear();
             return false;
         }
@@ -96,8 +64,8 @@ public class RegisterView implements Initializable {
         if(mtch.find()){
             return true;
         } else{
-            errorLabel.setVisible(true);
-            errorLabel.setText("Incorrect name");
+            errorName.setVisible(true);
+            errorName.setText("Incorrect name");
             nameInput.clear();
             return false;
         }
@@ -109,27 +77,46 @@ public class RegisterView implements Initializable {
         if(mtch.find()){
             return true;
         } else{
-            errorLabel.setVisible(true);
-            errorLabel.setText("Your password needs to: " +
+            errorPassword.setVisible(true);
+            errorPassword.setText("Your password needs to: " +
                     "\n - include both lower and upper case characters " +
                     "\n - include at least one number" +
                     "\n - be at least 6 characters long");
+
             passwordInput.clear();
             return false;
         }
     }
 
+    public boolean checkAdress(String adress){
+        if((adress.length() > 4) && (adress.length() < 25)){
+            return true;
+        } else{
+            errorAdress.setVisible(true);
+            errorAdress.setText("Wrong adress.");
+            adressInput.clear();
+            return false;
+        }
+    }
+
+
     @FXML
     void registerUser(ActionEvent evt){
+        hideLabels();
         String email = emailInput.getText();
         String name = nameInput.getText();
+        String adress = adressInput.getText();
         String password = passwordInput.getText();
 
-        if(checkPassword(password)) {
-            System.out.println("gut");
-        } else {
-            System.out.println("false");
-        }
+        presenter.validUser(email, name, adress, password);
+
+    }
+
+    public void hideLabels(){
+        errorName.setVisible(false);
+        errorEmail.setVisible(false);
+        errorPassword.setVisible(false);
+        errorAdress.setVisible(false);
     }
 
     @Override

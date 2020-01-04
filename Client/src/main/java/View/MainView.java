@@ -21,6 +21,10 @@ public class MainView implements Initializable {
         presenter.openWindow("ordersScreen.fxml");
     }
 
+    public void goToAddProductScreen(){
+        presenter.openWindow("addProductScreen.fxml");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new MainPresenter(this);

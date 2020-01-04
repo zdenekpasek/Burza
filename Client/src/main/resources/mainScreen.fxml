@@ -30,8 +30,18 @@
                   <TableColumn prefWidth="180.0" text="Price" />
               </columns>
             </TableView>
-            <HBox layoutX="289.0" layoutY="363.0" prefHeight="40.0" prefWidth="329.0" spacing="50.0">
+            <HBox layoutX="102.0" layoutY="360.0" prefHeight="40.0" prefWidth="329.0" spacing="50.0">
                <children>
+                  <Button maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" onAction="#goToAddProductScreen" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="ADD PRODUCT">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" onAction="#goToRemoveProductScreen" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="REMOVE PRODUCT">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                   <Button maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="SHOW DETAIL">
                      <font>
                         <Font name="System Bold" size="13.0" />

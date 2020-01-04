@@ -1,10 +1,8 @@
 package Presenter;
 
 import Model.BasketModel;
-import Model.ProfileModel;
 import Services.SceneService;
 import View.BasketView;
-import View.ProfileView;
 
 public class BasketPresenter {
 

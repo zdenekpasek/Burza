@@ -6,6 +6,10 @@
 	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1), 4, 0.0, 0, 1);
 }
 
+.hereButton {
+	-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0), 0, 0.0, 0, 0);
+}
+
 .signInButton:hover {
 	-fx-background-color: #1b3c5a;
 	background-color: #1b3c5a;
@@ -32,6 +36,11 @@
 	background-color: #1f4668;
 }
 
+.signInButton2 {
+	-fx-background-color: transparent;
+	-fx-cursor: hand;
+	-fx-text-fill: #1f4668;
+}
 .textInput:hover {
 }
 
@@ -55,4 +64,17 @@
 
 .imageButton:hover {
 	-fx-cursor: hand;
+}
+
+.productsButton {
+	-fx-background-color: #919191;
+	-fx-text-fill: #ffff;
+}
+
+.productsButton:hover {
+	-fx-cursor: hand;
+}
+
+.productsButton:pressed {
+	-fx-background-color: #9c9b9b;
 }

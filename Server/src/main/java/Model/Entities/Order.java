@@ -2,12 +2,10 @@ package Model.Entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +13,6 @@ import static javax.persistence.GenerationType.*;
 
 @Entity
 @Table(name = "Order")
-@NaturalIdCache
-@org.hibernate.annotations.Cache(
-        usage = CacheConcurrencyStrategy.READ_WRITE
-)
 @Data
 @NoArgsConstructor
 public class Order implements Serializable{
@@ -34,15 +28,27 @@ public class Order implements Serializable{
     @Column(name = "orderStatus", nullable = false, length = 20)
     private String orderStatus;
 
-//    @OneToMany(
-//            mappedBy = "Order",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<OrderProduct> products;
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrderProduct> products = new ArrayList<>();
+
+    public void addProduct(Product product){
+        OrderProduct orderProduct = new OrderProduct(this, product);
+        products.add(orderProduct);
+        product.getOrders().add(orderProduct);
+    }
+
+//    public void removeProduct(Product product){
+//        for (Iterator<OrderProduct> iterator = products.iterator();
+//            iterator.hasNext();){
+//            OrderProduct orderProduct = iterator.next();
 //
-//    @ManyToOne
-//    private User user;
+//            if(orderProduct.getOrder().)
+//        }
+//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

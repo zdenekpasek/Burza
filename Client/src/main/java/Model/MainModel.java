@@ -1,6 +1,6 @@
 package Model;
 
-import Presenter.MainView.MainPresenter;
+import Presenter.MainPresenter;
 
 public class MainModel {
 

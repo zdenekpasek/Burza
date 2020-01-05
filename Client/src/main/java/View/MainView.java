@@ -1,7 +1,6 @@
 package View;
 
-import Presenter.MainView.MainPresenter;
-import javafx.fxml.FXML;
+import Presenter.MainPresenter;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

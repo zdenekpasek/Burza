@@ -33,6 +33,16 @@ public class Category implements Serializable{
             orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
+    public void addProduct(Product product){
+        products.add(product);
+        product.setCategory(this);
+    }
+
+    public void removeProduct(Product product){
+        products.remove(product);
+        product.setCategory(null);
+    }
+
     public Category(Integer categoryID, String categoryName, String categoryDescription) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;

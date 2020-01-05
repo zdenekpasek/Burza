@@ -10,7 +10,13 @@
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
         <property name="hibernate.id.new_generator_mappings">false</property>
 
-        <mapping class="org.example.User" />
+        <mapping class="Model.Entities.Adress" />
+        <mapping class="Model.Entities.Category" />
+        <mapping class="Model.Entities.Order" />
+        <mapping class="Model.Entities.OrderProduct" />
+        <mapping class="Model.Entities.OrderProductId" />
+        <mapping class="Model.Entities.Product" />
+        <mapping class="Model.Entities.User" />
 
     </session-factory>
 </hibernate-configuration>

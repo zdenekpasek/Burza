@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import static javax.persistence.GenerationType.*;
 
@@ -26,9 +28,48 @@ public class User implements Serializable {
     @Column(name = "userPassword", nullable = false, length = 30)
     private String userPassword;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userID")
-    private Set<Order> orders;
+    @OneToMany(
+            mappedBy = "adress",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Adress> adresses = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Product> products = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    public void addAdress(Adress adress){
+        adresses.add((adress));
+        adress.setUser(this);
+    }
+
+    public void removeAdress(Adress adress){
+        adresses.remove(adress);
+        adress.setUser(null);
+    }
+
+    public void addProduct(Product product){
+        products.add(product);
+        product.setUser(this);
+    }
+
+    public void removeProduct(Product product){
+        products.remove(product);
+        product.setUser(null);
+    }
+
+    public void addOrder(Order order){
+        orders.add(order);
+        order.setUser(this);
+    }
 
 
     public User(Integer userID, String userEmail, String userName, String userPassword) {
@@ -37,5 +78,7 @@ public class User implements Serializable {
         this.userName = userName;
         this.userPassword = userPassword;
     }
+
+
 
 }

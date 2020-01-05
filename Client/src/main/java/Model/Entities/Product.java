@@ -28,6 +28,24 @@ public class Product implements Serializable {
     @Column(name = "productPhoto")
     private byte[] productPhoto;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product )) return false;
+        return productID != null && productID.equals(((Product) o).getProductID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.productID;
+    }
+
     public Product(Integer productID, String productName, String productDescription, Integer productPrice, byte[] productPhoto) {
         this.productID = productID;
         this.productName = productName;

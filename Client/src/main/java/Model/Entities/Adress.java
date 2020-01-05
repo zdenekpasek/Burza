@@ -26,10 +26,28 @@ public class Adress implements Serializable{
     @Column(name = "adressCountry", nullable = false, length = 30)
     private String adressCountry;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Adress )) return false;
+        return adressNumber != null && adressNumber.equals(((Adress) o).getAdressNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.adressNumber;
+    }
+
+
     public Adress(Integer adressNumber, String adressCity, String adressZIP, String adressCountry) {
         this.adressNumber = adressNumber;
         this.adressCity = adressCity;
         this.adressZIP = adressZIP;
         this.adressCountry = adressCountry;
     }
+
+
 }

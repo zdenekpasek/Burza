@@ -34,15 +34,30 @@ public class Order implements Serializable{
     @Column(name = "orderStatus", nullable = false, length = 20)
     private String orderStatus;
 
-    @OneToMany(
-            mappedBy = "Order",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<OrderProduct> products;
+//    @OneToMany(
+//            mappedBy = "Order",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<OrderProduct> products;
+//
+//    @ManyToOne
+//    private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order )) return false;
+        return orderNumber != null && orderNumber.equals(((Order) o).getOrderNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.orderNumber;
+    }
 
     public Order(Integer orderNumber, Date orderDate, String orderStatus) {
         this.orderNumber = orderNumber;

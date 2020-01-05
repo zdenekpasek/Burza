@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.GenerationType.*;
 
 
@@ -23,6 +26,12 @@ public class Category implements Serializable{
 
     @Column(name = "categoryDescription", nullable = false, length = 30)
     private String categoryDescription;
+
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Product> products = new ArrayList<>();
 
     public Category(Integer categoryID, String categoryName, String categoryDescription) {
         this.categoryID = categoryID;

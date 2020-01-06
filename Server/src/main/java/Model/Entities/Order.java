@@ -70,4 +70,9 @@ public class Order implements Serializable{
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
     }
+
+    public Order(Date orderDate, String orderStatus) {
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+    }
 }

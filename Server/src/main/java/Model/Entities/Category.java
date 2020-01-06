@@ -28,7 +28,7 @@ public class Category implements Serializable{
     private String categoryDescription;
 
     @OneToMany(
-            mappedBy = "product",
+            mappedBy = "category",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
@@ -45,6 +45,12 @@ public class Category implements Serializable{
 
     public Category(Integer categoryID, String categoryName, String categoryDescription) {
         this.categoryID = categoryID;
+        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
+    }
+
+
+    public Category(String categoryName, String categoryDescription) {
         this.categoryName = categoryName;
         this.categoryDescription = categoryDescription;
     }

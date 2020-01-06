@@ -29,19 +29,19 @@ public class User implements Serializable {
     private String userPassword;
 
     @OneToMany(
-            mappedBy = "adress",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Adress> adresses = new ArrayList<>();
 
     @OneToMany(
-            mappedBy = "product",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
     @OneToMany(
-            mappedBy = "order",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
@@ -72,13 +72,11 @@ public class User implements Serializable {
     }
 
 
-    public User(Integer userID, String userEmail, String userName, String userPassword) {
-        this.userID = userID;
+    public User( String userEmail, String userName, String userPassword) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;
     }
-
 
 
 }

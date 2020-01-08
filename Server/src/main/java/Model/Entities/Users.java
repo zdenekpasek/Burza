@@ -9,11 +9,11 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
-@Entity
+@Entity(name = "Users")
 @Table(name = "Users")
 @Data
 @NoArgsConstructor
-public class User implements Serializable {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
     @Column(name = "userID", unique = true, nullable = false)
@@ -28,10 +28,13 @@ public class User implements Serializable {
     @Column(name = "userPassword", nullable = false, length = 30)
     private String userPassword;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+//    @OneToMany(
+//            mappedBy = "users",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<Adress> adresses = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Adress> adresses = new ArrayList<>();
 
     @OneToMany(
@@ -46,15 +49,15 @@ public class User implements Serializable {
             orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
-    public void addAdress(Adress adress){
-        adresses.add((adress));
-        adress.setUser(this);
-    }
-
-    public void removeAdress(Adress adress){
-        adresses.remove(adress);
-        adress.setUser(null);
-    }
+//    public void addAdress(Adress adress){
+//        adresses.add((adress));
+//        adress.setUsers(this);
+//    }
+//
+//    public void removeAdress(Adress adress){
+//        adresses.remove(adress);
+//        adress.setUsers(null);
+//    }
 
     public void addProduct(Product product){
         products.add(product);
@@ -72,7 +75,7 @@ public class User implements Serializable {
     }
 
 
-    public User( String userEmail, String userName, String userPassword) {
+    public Users(String userEmail, String userName, String userPassword) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;

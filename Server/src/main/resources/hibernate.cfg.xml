@@ -16,7 +16,7 @@
         <mapping class="Model.Entities.OrderProduct" />
         <mapping class="Model.Entities.OrderProductId" />
         <mapping class="Model.Entities.Product" />
-        <mapping class="Model.Entities.User" />
+        <mapping class="Model.Entities.Users" />
 
     </session-factory>
 </hibernate-configuration>

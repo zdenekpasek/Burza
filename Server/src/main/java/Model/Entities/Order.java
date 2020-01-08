@@ -51,7 +51,7 @@ public class Order implements Serializable{
 //    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Users user;
 
     @Override
     public boolean equals(Object o) {

@@ -15,19 +15,19 @@
    <children>
       <AnchorPane layoutX="475.0" layoutY="27.0" prefHeight="446.0" prefWidth="386.0" style="-fx-background-color: #ededed; -fx-background-radius: 7;" styleClass="box" stylesheets="@style/main.css">
          <children>
-            <Label fx:id="errorPassword" layoutX="106.0" layoutY="372.0" prefHeight="74.0" prefWidth="267.0" textFill="#ff3d3d">
+            <Label fx:id="errorPassword" layoutX="106.0" layoutY="371.0" prefHeight="74.0" prefWidth="267.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordInput" layoutX="67.0" layoutY="266.0" prefHeight="40.0" prefWidth="279.0" promptText="password" style="-fx-background-radius: 8;" />
-            <TextField fx:id="emailInput" layoutX="67.0" layoutY="44.0" prefHeight="40.0" prefWidth="279.0" promptText="email" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-            <Label layoutX="148.0" layoutY="-2.0" text="Register" textFill="#1f4668">
+            <PasswordField fx:id="passwordInput" layoutX="67.0" layoutY="249.0" prefHeight="40.0" prefWidth="279.0" promptText="password" style="-fx-background-radius: 8;" />
+            <TextField fx:id="emailInput" layoutX="67.0" layoutY="80.0" prefHeight="40.0" prefWidth="279.0" promptText="email" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+            <Label layoutX="148.0" layoutY="17.0" text="Register" textFill="#1f4668">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Button layoutX="249.0" layoutY="350.0" maxHeight="39.0" maxWidth="52.0" minHeight="39.0" minWidth="52.0" mnemonicParsing="false" onAction="#goToSignInScreen" prefHeight="39.0" prefWidth="52.0" stylesheets="@style/main.css" text="here" textFill="WHITE">
+            <Button layoutX="249.0" layoutY="337.0" maxHeight="39.0" maxWidth="52.0" minHeight="39.0" minWidth="52.0" mnemonicParsing="false" onAction="#goToSignInScreen" prefHeight="39.0" prefWidth="52.0" stylesheets="@style/main.css" text="here" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -35,51 +35,49 @@
                   <String fx:value="signInButton2" />
                   <String fx:value="hereButton" />
                </styleClass></Button>
-            <Button layoutX="107.0" layoutY="318.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Register" textFill="WHITE">
+            <Button layoutX="107.0" layoutY="305.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Register" textFill="WHITE">
                <styleClass>
                   <String fx:value="registerButton" />
                   <String fx:value="button" />
                </styleClass></Button>
-            <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="23.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="23.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/ic_email_24px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="26.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="26.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/ic_lock_outline_24px.png" />
                </image>
             </ImageView>
-            <TextField fx:id="cityInput" layoutX="67.0" layoutY="158.0" prefHeight="40.0" prefWidth="187.0" promptText="city" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-            <TextField fx:id="nameInput" layoutX="67.0" layoutY="101.0" prefHeight="40.0" prefWidth="279.0" promptText="name" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-            <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="27.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="adressInput" layoutX="67.0" layoutY="191.0" prefHeight="40.0" prefWidth="279.0" promptText="adress" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+            <TextField fx:id="nameInput" layoutX="67.0" layoutY="137.0" prefHeight="40.0" prefWidth="279.0" promptText="name" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+            <ImageView fitHeight="23.0" fitWidth="30.0" layoutX="27.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/ic_person_24px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="22.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="22.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/ic_home_24px.png" />
                </image>
             </ImageView>
-            <Label layoutX="104.0" layoutY="361.0" prefHeight="17.0" prefWidth="154.0" text="Already a member? Login in " />
-            <Label fx:id="errorEmail" layoutX="143.0" layoutY="78.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+            <Label layoutX="104.0" layoutY="348.0" prefHeight="17.0" prefWidth="154.0" text="Already a member? Login in " />
+            <Label fx:id="errorEmail" layoutX="145.0" layoutY="113.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="errorName" layoutX="148.0" layoutY="134.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+            <Label fx:id="errorName" layoutX="148.0" layoutY="169.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="errorAdress" layoutX="145.0" layoutY="243.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+            <Label fx:id="errorAdress" layoutX="145.0" layoutY="225.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <TextField fx:id="countryInput" layoutX="67.0" layoutY="211.0" prefHeight="40.0" prefWidth="279.0" promptText="country" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-            <TextField fx:id="zipInput" layoutX="267.0" layoutY="158.0" prefHeight="40.0" prefWidth="78.0" promptText="ZIP" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
          </children>
          <opaqueInsets>
             <Insets />

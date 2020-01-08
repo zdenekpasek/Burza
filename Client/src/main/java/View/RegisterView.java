@@ -24,7 +24,13 @@ public class RegisterView implements Initializable {
     private TextField nameInput;
 
     @FXML
-    private TextField adressInput;
+    private TextField cityInput;
+
+    @FXML
+    private TextField zipInput;
+
+    @FXML
+    private TextField countryInput;
 
     @FXML
     private PasswordField passwordInput;
@@ -88,13 +94,15 @@ public class RegisterView implements Initializable {
         }
     }
 
-    public boolean checkAdress(String adress){
-        if((adress.length() > 4) && (adress.length() < 25)){
+    public boolean checkAdress(String city, String country, String ZIP){
+        if((city.length() > 3) && (city.length() < 25) && (country.length() > 3) && (country.length() < 30) && (ZIP.length() >= 5) && (ZIP.length() < 10) ){
             return true;
         } else{
             errorAdress.setVisible(true);
             errorAdress.setText("Wrong adress.");
-            adressInput.clear();
+            cityInput.clear();
+            countryInput.clear();
+            zipInput.clear();
             return false;
         }
     }
@@ -105,10 +113,12 @@ public class RegisterView implements Initializable {
         hideLabels();
         String email = emailInput.getText();
         String name = nameInput.getText();
-        String adress = adressInput.getText();
+        String city = cityInput.getText();
+        String country = countryInput.getText();
+        String zip = zipInput.getText();
         String password = passwordInput.getText();
 
-        presenter.validUser(email, name, adress, password);
+        presenter.validUser(email, name, city, country, zip, password);
 
     }
 

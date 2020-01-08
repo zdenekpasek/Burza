@@ -1,12 +1,9 @@
 package org.example;
 
-import Model.Entities.User;
+import Model.Entities.Users;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 
 public class ServerThread{
 
@@ -81,13 +78,15 @@ public class ServerThread{
     }
 
     private void register(PrintWriter out, BufferedReader in) throws IOException {
-        String[] user = new String[4];
-        for(int i = 0; i < 4; i++){
+        String[] user = new String[6];
+        for(int i = 0; i < 6; i++){
             user[i] = in.readLine();
         }
         //User newUser = new User(user[0], user[1], user[3]);
-        if(UserDAO.addUser(user[0], user[1], user[3])){
+        Users userTest = new Users(user[0],  user[1], user[5]);
+        if(UserDAO.addUser(userTest) && (UserDAO.addAdress(user[2], user[3], user[4], userTest))){
             System.out.println("User added");
+            System.out.println("Adress added");
             out.println(REGISTER_SUCCESS);
         } else{
             System.out.println("Error while adding user");

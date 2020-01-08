@@ -13,15 +13,15 @@ public class RegisterPresenter extends Presenter {
     private RegisterView view;
     private RegisterModel model;
 
-    public void validUser(String email, String name, String adress, String password){
-        if(view.checkEmail(email) && (view.checkName(name) && (view.checkPassword(password) && (view.checkAdress(adress))))){
-            model.registerUser(email, name, adress, password);
+    public void validUser(String email, String name, String city, String country, String ZIP, String password){
+        if(view.checkEmail(email) && (view.checkName(name) && (view.checkPassword(password) && (view.checkAdress(city, country, ZIP))))){
+            model.registerUser(email, name, city, country, ZIP, password);
             System.out.println("Valid input, user registered.");
         } else {
             System.out.println("Invalid input");
             view.checkName(name);
             view.checkPassword(password);
-            view.checkAdress(adress);
+            view.checkAdress(city, country, ZIP);
         }
 
     }

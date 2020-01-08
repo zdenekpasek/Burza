@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import static javax.persistence.GenerationType.*;
 
-@Entity
+@Entity(name = "Adress")
 @Table(name = "Adress")
 @Data
 @NoArgsConstructor
@@ -26,8 +26,9 @@ public class Adress implements Serializable{
     @Column(name = "adressCountry", nullable = false, length = 30)
     private String adressCountry;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    private Users users;
 
     @Override
     public boolean equals(Object o) {
@@ -49,5 +50,16 @@ public class Adress implements Serializable{
         this.adressCountry = adressCountry;
     }
 
+    public Adress(String adressCity, String adressZIP, String adressCountry) {
+        this.adressCity = adressCity;
+        this.adressZIP = adressZIP;
+        this.adressCountry = adressCountry;
+    }
 
+    public Adress(String adressCity, String adressZIP, String adressCountry, Users user) {
+        this.adressCity = adressCity;
+        this.adressZIP = adressZIP;
+        this.adressCountry = adressCountry;
+        this.users = user;
+    }
 }

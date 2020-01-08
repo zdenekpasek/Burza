@@ -32,7 +32,7 @@ public class Product implements Serializable {
     private byte[] productPhoto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;

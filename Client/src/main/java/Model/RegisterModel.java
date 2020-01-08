@@ -12,8 +12,8 @@ public class RegisterModel {
         this.presenter = presenter;
     }
 
-    public void registerUser(String email, String name, String adress, String password) {
-        String[] data = new String[]{email, name, adress, password};
+    public void registerUser(String email, String name, String city, String country, String ZIP, String password) {
+        String[] data = new String[]{email, name, city, country, ZIP, password};
         NetworkService.sendMessage(NetworkService.REGISTER);
         NetworkService.sendMessage(data);
         try{

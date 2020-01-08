@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -105,6 +106,10 @@ public class RegisterView implements Initializable {
             zipInput.clear();
             return false;
         }
+    }
+
+    public String hashPassword(String pass){
+        return BCrypt.hashpw(pass, BCrypt.gensalt());
     }
 
 

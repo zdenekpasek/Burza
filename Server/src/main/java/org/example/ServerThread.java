@@ -1,6 +1,7 @@
 package org.example;
 
 import Model.Entities.Users;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.*;
 import java.net.Socket;
@@ -69,11 +70,20 @@ public class ServerThread{
         }
     }
 
-    private void login(PrintWriter out, BufferedReader in) throws IOException {
-        String[] login = new String[2];
-        for(int i = 0; i < 2; i++){
-            login[i] = in.readLine();
+    private boolean validatePassword(String plainPassword, String hashPassword){
+        if(BCrypt.checkpw(plainPassword, hashPassword)){
+            return true;
         }
+        return false;
+    }
+
+    private void login(PrintWriter out, BufferedReader in) throws IOException {
+        // tady je plain password retarde, takze ho jen porovnej s hashPwd v db xd
+        String[] loginData = new String[2];
+        for(int i = 0; i < 2; i++){
+            loginData[i] = in.readLine();
+        }
+
 
     }
 
@@ -84,7 +94,7 @@ public class ServerThread{
         }
         //User newUser = new User(user[0], user[1], user[3]);
         Users userTest = new Users(user[0],  user[1], user[5]);
-        if(UserDAO.addUser(userTest) && (UserDAO.addAdress(user[2], user[3], user[4], userTest))){
+        if(UserDAO.addUser(userTest) && (AdressDAO.addAdress(user[2], user[3], user[4], userTest))){
             System.out.println("User added");
             System.out.println("Adress added");
             out.println(REGISTER_SUCCESS);

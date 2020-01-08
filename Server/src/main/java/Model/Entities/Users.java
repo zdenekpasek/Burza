@@ -28,12 +28,6 @@ public class Users implements Serializable {
     @Column(name = "userPassword", nullable = false, length = 30)
     private String userPassword;
 
-//    @OneToMany(
-//            mappedBy = "users",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<Adress> adresses = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Adress> adresses = new ArrayList<>();
 
@@ -48,6 +42,8 @@ public class Users implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
+
+
 
 //    public void addAdress(Adress adress){
 //        adresses.add((adress));

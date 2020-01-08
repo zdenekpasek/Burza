@@ -22,7 +22,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Button layoutX="119.0" layoutY="274.0" mnemonicParsing="false" onAction="#signInButton" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Sign In" textFill="WHITE">
+            <Button layoutX="119.0" layoutY="274.0" mnemonicParsing="false" onAction="#signIn" prefHeight="30.0" prefWidth="172.0" stylesheets="@style/main.css" text="Sign In" textFill="WHITE">
                <styleClass>
                   <String fx:value="signInButton" />
                   <String fx:value="button" />

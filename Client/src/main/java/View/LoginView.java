@@ -2,6 +2,7 @@ package View;
 
 
 import Presenter.LoginPresenter;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -24,8 +25,11 @@ public class LoginView implements Initializable {
         presenter.openWindow("registerScreen.fxml");
     }
 
-    public void signInButton(){
-
+    @FXML
+    void signIn(ActionEvent evt){
+        String email = emailInput.getText();
+        String password = passwordInput.getText();
+        presenter.getLoginData(email, password);
     }
 
     @Override

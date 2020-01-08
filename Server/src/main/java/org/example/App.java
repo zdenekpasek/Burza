@@ -12,10 +12,10 @@ public class App {
         String categoryDescription = "desc";
         Date date = new Date();
 
-        if(UserDAO.addUser(userEmail, userName, userPassword)){
-            System.out.println("User added");
-        } else{
-            System.out.println("Error while adding user");
-        }
+//        if(UserDAO.addUser(userEmail, userName, userPassword)){
+//            System.out.println("User added");
+//        } else{
+//            System.out.println("Error while adding user");
+//        }
     }
 }

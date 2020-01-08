@@ -15,7 +15,7 @@ public class RegisterPresenter extends Presenter {
 
     public void validUser(String email, String name, String city, String country, String ZIP, String password){
         if(view.checkEmail(email) && (view.checkName(name) && (view.checkPassword(password) && (view.checkAdress(city, country, ZIP))))){
-            model.registerUser(email, name, city, country, ZIP, password);
+            model.registerUser(email, name, city, country, ZIP, view.hashPassword(password));
             System.out.println("Valid input, user registered.");
         } else {
             System.out.println("Invalid input");

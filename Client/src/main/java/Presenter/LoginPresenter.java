@@ -3,6 +3,7 @@ package Presenter;
 import Model.LoginModel;
 import Services.SceneService;
 import View.LoginView;
+import View.RegisterView;
 
 import java.io.IOException;
 
@@ -14,6 +15,10 @@ public class LoginPresenter extends Presenter {
     public LoginPresenter (LoginView view) {
         this.view = view;
         model = new LoginModel(this);
+    }
+
+    public void getLoginData(String email, String password){
+        model.loginUser(email,password);
     }
 
     public void loginSuccessful() {

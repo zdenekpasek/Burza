@@ -3,6 +3,7 @@ package Services;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -16,6 +17,14 @@ public class SceneService {
 
 
     public static Scene controller;
+
+    public static void setDefaultScene(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(SceneService.class.getClassLoader().getResource("loginScreen.fxml"));
+        primaryStage.setScene(new Scene(root));
+        SceneService.setController(primaryStage.getScene());
+        primaryStage.setTitle("E-Flea Market");
+        primaryStage.show();
+    }
 
     public static void switchScene(String scene) throws IOException {
         Parent root = FXMLLoader.load(SceneService.class.getClassLoader().getResource(scene));

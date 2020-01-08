@@ -12,4 +12,8 @@ public class Presenter {
 
         }
     }
+
+    public void error() {
+        // TODO
+    }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 @Data
 @NoArgsConstructor
 public class User implements Serializable {

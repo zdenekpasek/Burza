@@ -1,10 +1,17 @@
 package org.example;
 
 import Model.Entities.Users;
+import org.example.DAO.AdressDAO;
+import org.example.DAO.CategoryDAO;
+import org.example.DAO.UserDAO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
+import java.util.Objects;
+
+import Services.NetworkService;
 
 public class ServerThread{
 
@@ -52,6 +59,11 @@ public class ServerThread{
                 }
             }
         }).run();
+    }
+
+    private void sendCategories(PrintWriter out){
+        NetworkService.sendMessage(NetworkService.CATEGORY_SEND);
+        NetworkService.sendMessage(Objects.requireNonNull(CategoryDAO.getCategories()).toString());
     }
 
     private void handleUserAction(PrintWriter out, BufferedReader in) throws IOException {

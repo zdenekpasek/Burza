@@ -9,7 +9,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
-@Entity
+@Entity(name = "Product")
 @Table(name = "Product")
 @Data
 @NoArgsConstructor
@@ -31,10 +31,12 @@ public class Product implements Serializable {
     @Column(name = "productPhoto")
     private byte[] productPhoto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userID")
     private Users user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoryID")
     private Category category;
 
     @OneToMany(
@@ -62,5 +64,17 @@ public class Product implements Serializable {
         this.productDescription = productDescription;
         this.productPrice = productPrice;
         this.productPhoto = productPhoto;
+    }
+
+    public Product(String productName, Integer productPrice, Users user, Category category) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.user = user;
+        this.category = category;
+    }
+
+    public Product(String productName, Integer productPrice) {
+        this.productName = productName;
+        this.productPrice = productPrice;
     }
 }

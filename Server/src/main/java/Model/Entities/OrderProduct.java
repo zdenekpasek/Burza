@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
-@Entity
+@Entity(name = "OrderProduct")
 @Table(name = "OrderProduct")
 @Data
 @NoArgsConstructor

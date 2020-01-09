@@ -31,17 +31,23 @@ public class Users implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Adress> adresses = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
+
+//    @OneToMany(
+//            mappedBy = "user",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<Product> products = new ArrayList<>();
+
+//    @OneToMany(
+//            mappedBy = "user",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<Order> orders = new ArrayList<>();
 
 
 

@@ -44,6 +44,8 @@ public class AddProductView extends View implements Initializable {
     private Label errorPrice;
 
 
+
+
     public boolean checkProductName(String name){
         Pattern namePattern = Pattern.compile("^[a-zA-Z0-9_-]{4,16}$");
         Matcher mtch = namePattern.matcher(name);
@@ -90,6 +92,16 @@ public class AddProductView extends View implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new AddProductPresenter(this);
+
+        categoryComboBox.getItems().addAll(
+                "Electronics",
+                "Books",
+                "Cars",
+                "Sport",
+                "Music",
+                "Furniture",
+                "Clothing"
+        );
 
         priceInput.textProperty().addListener(new ChangeListener<String>() {
             @Override

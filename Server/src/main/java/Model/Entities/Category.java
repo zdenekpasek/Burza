@@ -10,7 +10,7 @@ import java.util.List;
 import static javax.persistence.GenerationType.*;
 
 
-@Entity
+@Entity(name = "Category")
 @Table(name = "Category")
 @Data
 @NoArgsConstructor
@@ -27,11 +27,14 @@ public class Category implements Serializable{
     @Column(name = "categoryDescription", nullable = false, length = 30)
     private String categoryDescription;
 
-    @OneToMany(
-            mappedBy = "category",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
+
+//    @OneToMany(
+//            mappedBy = "category",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product){
         products.add(product);

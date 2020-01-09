@@ -1,7 +1,8 @@
-package org.example;
+package org.example.DAO;
 
 import Model.Entities.Adress;
 import Model.Entities.Users;
+import org.example.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

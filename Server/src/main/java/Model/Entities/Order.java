@@ -11,7 +11,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
-@Entity
+@Entity(name = "Order")
 @Table(name = "Order")
 @Data
 @NoArgsConstructor

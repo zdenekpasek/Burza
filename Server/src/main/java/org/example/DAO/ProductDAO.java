@@ -1,21 +1,23 @@
-package org.example;
+package org.example.DAO;
 
-import Model.Entities.Adress;
+import Model.Entities.Category;
+import Model.Entities.Product;
 import Model.Entities.Users;
+import org.example.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class AdressDAO {
+public class ProductDAO {
 
-    public static boolean addAdress(String adressCity, String adressCountry, String adressZIP, Users user){
-        int userId = 0;
+    public static boolean addProduct(String productName, int productPrice, Users user, Category category){
+        int productID = 0;
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Adress adress = new Adress(adressCity,  adressCountry, adressZIP, user);
-            userId = (Integer)session.save(adress);
+            Product product = new Product(productName, productPrice, user, category);
+            productID = (Integer)session.save(product);
             tx.commit();
         } catch (Exception ex){
             System.out.println(ex.getMessage());
@@ -25,6 +27,6 @@ public class AdressDAO {
         } finally {
             session.close();
         }
-        return userId > 0;
+        return productID > 0;
     }
 }

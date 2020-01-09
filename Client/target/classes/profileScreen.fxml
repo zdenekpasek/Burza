@@ -97,7 +97,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="824.0" layoutY="43.0" maxHeight="40.0" maxWidth="53.0" minHeight="40.0" minWidth="53.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="53.0" styleClass="imageButton" stylesheets="@style/main.css" text="Button">
+      <Button layoutX="824.0" layoutY="43.0" maxHeight="40.0" maxWidth="53.0" minHeight="40.0" minWidth="53.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="53.0" styleClass="imageButton" stylesheets="@style/main.css" text="Button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>

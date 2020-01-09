@@ -4,6 +4,7 @@ import Model.Entities.Adress;
 import Model.Entities.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class UserDAO {
 
@@ -28,16 +29,20 @@ public class UserDAO {
     }
 
 
-    public static boolean authUser(){
-        int userId = 0;
+    public static boolean authUser(String email){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try{
             tx = session.beginTransaction();
-
-
+            Query query = session.createQuery("select userEmail from Users where userEmail= :email");
+            query.setParameter("email", email);
+            String emailFromDb = (String)query.uniqueResult();
             tx.commit();
+            if(email.equals(emailFromDb)){
+                return true;
+            }
+            return false;
         } catch (Exception ex){
             System.out.println(ex.getMessage());
             if(tx != null){
@@ -46,10 +51,29 @@ public class UserDAO {
         } finally {
             session.close();
         }
-
-        return userId > 0;
-
+       return false;
     }
 
+    public static String getHash(String email){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select userPassword from Users where userEmail= :email");
+            query.setParameter("email", email);
+            String hashFromDb = (String)query.uniqueResult();
+            tx.commit();
+            return hashFromDb;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return "false";
+    }
 
 }

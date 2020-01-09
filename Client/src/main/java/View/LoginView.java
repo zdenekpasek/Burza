@@ -5,6 +5,7 @@ import Presenter.LoginPresenter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -21,6 +22,9 @@ public class LoginView implements Initializable {
     @FXML
     private PasswordField passwordInput;
 
+    @FXML
+    private Label errorLabel;
+
     public void goToRegisterScreen(){
         presenter.openWindow("registerScreen.fxml");
     }
@@ -30,6 +34,11 @@ public class LoginView implements Initializable {
         String email = emailInput.getText();
         String password = passwordInput.getText();
         presenter.getLoginData(email, password);
+    }
+
+    public void wrongCredentials(){
+        errorLabel.setText("Login failed, wrong credentials!");
+        errorLabel.setVisible(true);
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddProductView implements Initializable {
+public class AddProductView extends View implements Initializable {
 
     private AddProductPresenter presenter;
 
@@ -86,18 +86,6 @@ public class AddProductView implements Initializable {
         presenter.validProduct(name, description, price);
 
     }
-
-
-    public void goToProfileScreen(){
-        presenter.openWindow("profileScreen.fxml");
-    }
-    public void goToMainScreen(){
-        presenter.openWindow("mainScreen.fxml");
-    }
-    public void goToOrdersScreen(){
-        presenter.openWindow("ordersScreen.fxml");
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -15,8 +15,8 @@
    <children>
       <AnchorPane layoutX="475.0" layoutY="27.0" prefHeight="446.0" prefWidth="386.0" style="-fx-background-color: #ededed; -fx-background-radius: 7;" styleClass="box" stylesheets="@style/main.css">
          <children>
-            <PasswordField fx:id="passwordInput" layoutX="66.0" layoutY="191.0" prefHeight="40.0" prefWidth="279.0" promptText="password" style="-fx-background-radius: 8;" />
-            <TextField fx:id="emailInput" layoutX="66.0" layoutY="111.0" prefHeight="40.0" prefWidth="279.0" promptText="email" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+            <PasswordField fx:id="passwordInput" layoutX="66.0" layoutY="191.0" prefHeight="40.0" prefWidth="279.0" promptText="password" style="-fx-background-radius: 8;" text="Admin1234" />
+            <TextField fx:id="emailInput" layoutX="66.0" layoutY="111.0" prefHeight="40.0" prefWidth="279.0" promptText="email" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" text="admin@gmail.com" />
             <Label layoutX="163.0" layoutY="29.0" text="Sign In" textFill="#1f4668">
                <font>
                   <Font name="System Bold" size="26.0" />
@@ -44,6 +44,11 @@
                </image>
             </ImageView>
             <Label fx:id="errorLabel" layoutX="153.0" layoutY="240.0" prefHeight="23.0" prefWidth="233.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel" layoutX="126.0" layoutY="240.0" prefHeight="23.0" prefWidth="172.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>

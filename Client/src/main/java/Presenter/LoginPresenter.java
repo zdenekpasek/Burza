@@ -25,12 +25,12 @@ public class LoginPresenter extends Presenter {
         try{
             SceneService.switchScene(SceneService.mainScreen);
         }catch(IOException e){
-            System.out.println("Scene switch failed");
+            System.out.println("Scene switch to main screen failed");
         }
-
     }
 
     public void loginFailed() {
         System.out.println("Login failed");
+        view.wrongCredentials();
     }
 }

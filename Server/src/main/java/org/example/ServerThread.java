@@ -78,21 +78,28 @@ public class ServerThread{
     }
 
     private void login(PrintWriter out, BufferedReader in) throws IOException {
-        // tady je plain password retarde, takze ho jen porovnej s hashPwd v db xd
+        // email == loginData[0] ; password == loginData[1]
         String[] loginData = new String[2];
         for(int i = 0; i < 2; i++){
             loginData[i] = in.readLine();
         }
 
+        if(UserDAO.authUser(loginData[0]) && validatePassword(loginData[1], UserDAO.getHash(loginData[0]) )){
+            System.out.println("User successfully authorized!");
+            out.println(LOGIN_SUCCESS);
+        } else{
+            System.out.println("Error while authorizing user.");
+            out.println(LOGIN_FAIL);
+        }
 
     }
 
     private void register(PrintWriter out, BufferedReader in) throws IOException {
+        // email == user[0] ; name == user[1] ; city == user[2] ; country == user[3] ; ZIP == user[4] ; password == [5]
         String[] user = new String[6];
         for(int i = 0; i < 6; i++){
             user[i] = in.readLine();
         }
-        //User newUser = new User(user[0], user[1], user[3]);
         Users userTest = new Users(user[0],  user[1], user[5]);
         if(UserDAO.addUser(userTest) && (AdressDAO.addAdress(user[2], user[3], user[4], userTest))){
             System.out.println("User added");
@@ -103,7 +110,5 @@ public class ServerThread{
             out.println(REGISTER_FAIL);
         }
     }
-
-
 
 }

@@ -14,6 +14,8 @@ public class SceneService {
     public static String mainScreen = "mainScreen.fxml";
     public static String addProductScreen = "addProductScreen.fxml";
     public static String removeProductScreen = "removeProductScreen.fxml";
+    public static String profileScreen = "profileScreen.fxml";
+
 
 
     public static Scene controller;

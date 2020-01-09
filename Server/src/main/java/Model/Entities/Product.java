@@ -66,15 +66,18 @@ public class Product implements Serializable {
         this.productPhoto = productPhoto;
     }
 
-    public Product(String productName, Integer productPrice, Users user, Category category) {
+
+    public Product(String productName, Integer productPrice, String productDescription) {
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productDescription = productDescription;
+    }
+    public Product(String productName, Integer productPrice, String productDescription, byte[] productPhoto, Users user, Category category) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
         this.user = user;
         this.category = category;
-    }
-
-    public Product(String productName, Integer productPrice) {
-        this.productName = productName;
-        this.productPrice = productPrice;
+        this.productPhoto = productPhoto;
     }
 }

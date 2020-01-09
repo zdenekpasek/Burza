@@ -11,9 +11,16 @@ public class NetworkService {
     public static final String REGISTER = "1";
     public static final String LOGIN = "2";
     public static final String ADD_USER = "3";
-    public static final String ADD_PRODUCT = "40";
-    public static final String REMOVE_PRODUCT = "50";
+    public static final String ADD_PRODUCT = "4";
+    public static final String REMOVE_PRODUCT = "5";
     public static final String CATEGORY_SEND = "6";
+
+    public static final String ADD_PRODUCT_SUCCESS = "400";
+    public static final String ADD_PRODUCT_FAIL = "401";
+
+    public static final String REMOVE_PRODUCT_SUCCESS = "500";
+    public static final String REMOVE_PRODUCT_FAIL = "501";
+
 
 
     public static final String LOGIN_SUCCESS = "200";

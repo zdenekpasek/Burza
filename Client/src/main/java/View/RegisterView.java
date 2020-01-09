@@ -52,6 +52,7 @@ public class RegisterView implements Initializable {
         presenter.openWindow("loginScreen.fxml");
     }
 
+    // validuje email user input podle regulárního výrazu, pokud vyhovuje regexu vrací true, v opačném případě false
     public boolean checkEmail(String email){
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Matcher mtch = emailPattern.matcher(email);
@@ -64,7 +65,8 @@ public class RegisterView implements Initializable {
             return false;
         }
     }
-
+    // validuje name user input podle regulárního výrazu, pokud vyhovuje regexu vrací true, v opačném případě false
+    // povoluje malá, velká písmena, čísla a podtržítko - jméno musí mít minimálně 4 znaky a maximálne 16 znaků
     public boolean checkName(String name){
         Pattern namePattern = Pattern.compile("^[a-zA-Z0-9_-]{4,16}$");
         Matcher mtch = namePattern.matcher(name);
@@ -77,7 +79,8 @@ public class RegisterView implements Initializable {
             return false;
         }
     }
-
+    // validuje password user input podle regulárního výrazu, pokud vyhovuje regexu vrací true, v opačném případě false
+    // heslo musí obashovat jak malá písmena, tak velká, dále musí mít minimálně jedno číslo a minimální délka hesla je 6 znaků
     public boolean checkPassword(String password){
         Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,16}$");
         Matcher mtch = passwordPattern.matcher(password);
@@ -95,6 +98,7 @@ public class RegisterView implements Initializable {
         }
     }
 
+    // validuje address user input podle jednoduchých podmínek (délka vstupů), pokud vyhovuje podmínkám vrací true, v opačném případě false
     public boolean checkAdress(String city, String country, String ZIP){
         if((city.length() > 3) && (city.length() < 25) && (country.length() > 3) && (country.length() < 30) && (ZIP.length() >= 5) && (ZIP.length() < 10) ){
             return true;
@@ -108,11 +112,12 @@ public class RegisterView implements Initializable {
         }
     }
 
+    // metoda pro hashování hesla - využita knihovna BCrypt
     public String hashPassword(String pass){
         return BCrypt.hashpw(pass, BCrypt.gensalt());
     }
 
-
+    // sesbírá veškeré potřebné inputy pro registraci usera a předá je registerPresenteru
     @FXML
     void registerUser(ActionEvent evt){
         hideLabels();
@@ -127,6 +132,7 @@ public class RegisterView implements Initializable {
 
     }
 
+    // schová veškeré input error labely
     public void hideLabels(){
         errorName.setVisible(false);
         errorEmail.setVisible(false);

@@ -11,18 +11,25 @@ public class AddProductPresenter extends Presenter {
     private AddProductView view;
     private AddProductModel model;
 
-    public void validProduct(String name, String description, int price){
-        if(view.checkProductName(name) && view.checkProductDescription(description) && view.checkProductPrice(price)){
+    public void validProduct(String productName, String productDescription, int productPrice, String productPhotoPath){
+        if(view.checkProductName(productName) && view.checkProductDescription(productDescription) && view.checkProductPrice(productPrice)){
+            model.addProduct(productName, productDescription, productPrice, productPhotoPath);
             System.out.println("Valid input, product added.");
         } else{
             System.out.println("Invalid input");
-            view.checkProductDescription(description);
-            view.checkProductPrice(price);
+            view.checkProductDescription(productDescription);
+            view.checkProductPrice(productPrice);
         }
     }
 
     public AddProductPresenter (AddProductView view) {
         this.view = view;
         model = new AddProductModel(this);
+    }
+
+    public void addProductSucessfull() {
+    }
+
+    public void addProductFailed() {
     }
 }

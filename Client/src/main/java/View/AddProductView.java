@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +38,9 @@ public class AddProductView extends View implements Initializable {
     private ComboBox categoryComboBox;
 
     @FXML
+    private TextField categoryInput;
+
+    @FXML
     private Label errorName;
 
     @FXML
@@ -42,6 +48,11 @@ public class AddProductView extends View implements Initializable {
 
     @FXML
     private Label errorPrice;
+
+    @FXML
+    private Label pathLabel;
+
+    private String chosenFilePath = "";
 
 
 
@@ -79,14 +90,29 @@ public class AddProductView extends View implements Initializable {
         }
     }
 
+
+    public String fileChoose(){
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        File file = fc.showOpenDialog(null);
+        if(file != null){
+            pathLabel.setText(file.getAbsolutePath());
+            chosenFilePath = file.getAbsolutePath();
+            return chosenFilePath;
+        }
+        return "error";
+
+    }
+
     @FXML
     void addProduct(ActionEvent evt){
         String name = nameInput.getText();
         String description = descriptionInput.getText();
         String priceText = priceInput.getText();
         int price = Integer.parseInt(priceText);
-        presenter.validProduct(name, description, price);
-
+        presenter.validProduct(name, description, price, chosenFilePath);
     }
 
     @Override

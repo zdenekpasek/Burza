@@ -15,50 +15,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="bg" stylesheets="@style/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AddProductView">
    <children>
-      <AnchorPane layoutX="-6.0" layoutY="94.0" prefHeight="414.0" prefWidth="906.0" style="-fx-background-color: #ededed;" styleClass="box" stylesheets="@style/main.css">
-         <children>
-            <Label layoutX="37.0" layoutY="-46.0" text="Add product" textFill="#6bb5ff">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
-            <HBox layoutX="384.0" layoutY="311.0" prefHeight="30.0" prefWidth="138.0" spacing="50.0">
-               <children>
-                  <Button maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="ADD PRODUCT">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <ComboBox fx:id="categoryComboBox" layoutX="608.0" layoutY="59.0" prefHeight="25.0" prefWidth="138.0" promptText="Select Category" />
-            <VBox layoutX="316.0" layoutY="54.0" prefHeight="225.0" prefWidth="275.0" spacing="30.0">
-               <children>
-                  <TextField fx:id="nameInput" maxHeight="55.0" maxWidth="275.0" minHeight="41.0" minWidth="275.0" prefHeight="41.0" prefWidth="275.0" promptText="name" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-                  <TextField fx:id="descriptionInput" alignment="TOP_LEFT" prefHeight="102.0" prefWidth="275.0" promptText="description" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
-                  <TextField fx:id="priceInput" maxHeight="41.0" maxWidth="275.0" minHeight="41.0" minWidth="275.0" prefHeight="41.0" prefWidth="275.0" promptText="price" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" text="0" />
-               </children>
-            </VBox>
-            <Label fx:id="errorName" layoutX="756.0" layoutY="57.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </Label>
-            <Label fx:id="errorDescription" layoutX="606.0" layoutY="153.0" prefHeight="30.0" prefWidth="275.0" textFill="#ff3d3d">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </Label>
-            <Label fx:id="errorPrice" layoutX="604.0" layoutY="246.0" prefHeight="30.0" prefWidth="275.0" textFill="#ff3d3d">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </Label>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </AnchorPane>
       <Label layoutX="30.0" layoutY="1.0" prefHeight="45.0" prefWidth="262.0" text="E-Flea Market" textFill="WHITE">
          <font>
             <Font size="30.0" />
@@ -105,5 +61,49 @@
             </Button>
          </children>
       </HBox>
+      <AnchorPane layoutX="-6.0" layoutY="94.0" prefHeight="414.0" prefWidth="906.0" style="-fx-background-color: #ededed;" styleClass="box" stylesheets="@style/main.css">
+         <children>
+            <Label layoutX="37.0" layoutY="-46.0" text="Add product" textFill="#6bb5ff">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <HBox layoutX="384.0" layoutY="311.0" prefHeight="30.0" prefWidth="138.0" spacing="50.0" />
+            <ComboBox fx:id="categoryComboBox" layoutX="608.0" layoutY="59.0" prefHeight="25.0" prefWidth="138.0" promptText="Select Category" />
+            <VBox layoutX="316.0" layoutY="54.0" prefHeight="261.0" prefWidth="275.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="nameInput" maxHeight="55.0" maxWidth="275.0" minHeight="41.0" minWidth="275.0" prefHeight="41.0" prefWidth="275.0" promptText="name" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+                  <TextField fx:id="categoryInput" maxHeight="55.0" maxWidth="275.0" minHeight="35.0" minWidth="275.0" prefHeight="35.0" prefWidth="275.0" promptText="category" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+                  <TextField fx:id="descriptionInput" alignment="TOP_LEFT" prefHeight="67.0" prefWidth="275.0" promptText="description" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+                  <TextField fx:id="priceInput" maxHeight="89.0" maxWidth="275.0" minHeight="32.0" minWidth="274.0" prefHeight="32.0" prefWidth="275.0" promptText="price" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" text="0" />
+               </children>
+            </VBox>
+            <Label fx:id="errorName" layoutX="756.0" layoutY="57.0" prefHeight="30.0" prefWidth="127.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorDescription" layoutX="609.0" layoutY="160.0" prefHeight="119.0" prefWidth="275.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorPrice" layoutX="604.0" layoutY="246.0" prefHeight="30.0" prefWidth="275.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Button layoutX="614.0" layoutY="128.0" maxHeight="25.0" maxWidth="93.0" minHeight="25.0" minWidth="93.0" mnemonicParsing="false" onAction="#fileChoose" prefHeight="25.0" prefWidth="93.0" text="Choose image" />
+            <Label fx:id="pathLabel" alignment="TOP_LEFT" layoutX="722.0" layoutY="132.0" prefHeight="83.0" prefWidth="149.0" textAlignment="JUSTIFY" wrapText="true" />
+            <Button layoutX="386.0" layoutY="340.0" maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="ADD PRODUCT">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
    </children>
 </AnchorPane>

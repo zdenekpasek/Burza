@@ -9,6 +9,31 @@ import org.hibernate.query.Query;
 
 public class UserDAO {
 
+
+    public static Users selectUser(String email){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Users where userEmail= :email");
+            query.setParameter("email", email);
+            Users userFromDb = (Users)query.uniqueResult();
+            tx.commit();
+
+            return userFromDb;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+
     public static boolean addUser(Users user){
         int userId = 0;
 

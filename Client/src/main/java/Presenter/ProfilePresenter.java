@@ -2,6 +2,7 @@ package Presenter;
 
 import Model.ProfileModel;
 import Services.SceneService;
+import Services.UserService;
 import View.ProfileView;
 
 public class ProfilePresenter extends Presenter{
@@ -12,5 +13,6 @@ public class ProfilePresenter extends Presenter{
     public ProfilePresenter (ProfileView view) {
         this.view = view;
         model = new ProfileModel(this);
+        view.setUserProfile(UserService.username, UserService.email, UserService.adressCountry, UserService.adressCity);
     }
 }

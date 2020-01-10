@@ -35,6 +35,29 @@ public class UserDAO {
         return null;
     }
 
+    public static int selectUserID(String email){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select userID from Users where userEmail= :email");
+            query.setParameter("email", email);
+            int userID = (int)query.uniqueResult();
+            tx.commit();
+
+            return userID;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return 0;
+    }
+
     // přidá Usera do databáze
     public static boolean addUser(Users user){
         int userId = 0;

@@ -5,6 +5,7 @@ import Presenter.Presenter;
 import Services.SceneService;
 import View.MainView;
 
+
 public class MainPresenter extends Presenter {
 
     private MainView view;
@@ -19,4 +20,6 @@ public class MainPresenter extends Presenter {
         System.out.println(text);
     }
 
+    public void getAllProducts() {
+    }
 }

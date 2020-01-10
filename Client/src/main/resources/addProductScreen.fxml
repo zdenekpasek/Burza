@@ -88,7 +88,7 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="errorPrice" layoutX="604.0" layoutY="246.0" prefHeight="30.0" prefWidth="275.0" textFill="#ff3d3d">
+            <Label fx:id="errorPrice" layoutX="602.0" layoutY="285.0" prefHeight="30.0" prefWidth="275.0" textFill="#ff3d3d">
                <font>
                   <Font size="11.0" />
                </font>
@@ -100,6 +100,16 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="addedProductLabel" layoutX="411.0" layoutY="381.0" prefHeight="17.0" prefWidth="176.0" textFill="#34ff00">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorProductLabel" layoutX="374.0" layoutY="381.0" prefHeight="17.0" prefWidth="164.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />

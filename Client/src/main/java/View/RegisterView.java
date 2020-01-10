@@ -48,6 +48,9 @@ public class RegisterView implements Initializable {
     @FXML
     private Label errorAdress;
 
+    @FXML
+    private Label userExistsLabel;
+
     public void goToSignInScreen(){
         presenter.openWindow("loginScreen.fxml");
     }
@@ -138,6 +141,22 @@ public class RegisterView implements Initializable {
         errorEmail.setVisible(false);
         errorPassword.setVisible(false);
         errorAdress.setVisible(false);
+    }
+
+    public void showUserExists(){
+        userExistsLabel.setText("User with this email already exists!");
+        userExistsLabel.setVisible(true);
+        String email = emailInput.getText();
+        String name = nameInput.getText();
+        String city = cityInput.getText();
+        String country = countryInput.getText();
+        String zip = zipInput.getText();
+        String password = passwordInput.getText();
+        checkName(name);
+        checkEmail(email);
+        checkPassword(password);
+        checkAdress(city, country, zip);
+        checkPassword(password);
     }
 
     @Override

@@ -57,27 +57,27 @@
             </VBox>
             <VBox layoutX="240.0" layoutY="22.0" prefHeight="200.0" prefWidth="215.0" spacing="20.0">
                <children>
-                  <Label fx:id="nameLabelFromDb" text="Zdenek Pasek" textFill="#4a4a4a">
+                  <Label fx:id="nameLabelFromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="emailLabelFromDb" text="monkas@monka.kk" textFill="#4a4a4a">
+                  <Label fx:id="emailLabelFromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cityLabelFromDb" text="Random shit" textFill="#4a4a4a">
+                  <Label fx:id="cityLabelFromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="countryLabelFromDb" text="5" textFill="#4a4a4a">
+                  <Label fx:id="countryLabelFromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="ordersLabelFromDb" text="5" textFill="#4a4a4a">
+                  <Label fx:id="ordersLabelFromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

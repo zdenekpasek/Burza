@@ -80,6 +80,11 @@
             </Label>
             <TextField fx:id="countryInput" layoutX="67.0" layoutY="211.0" prefHeight="40.0" prefWidth="279.0" promptText="country" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
             <TextField fx:id="zipInput" layoutX="267.0" layoutY="158.0" prefHeight="40.0" prefWidth="78.0" promptText="ZIP" style="-fx-background-radius: 8;" styleClass="textInput" stylesheets="@style/main.css" />
+            <Label fx:id="userExistsLabel" layoutX="110.0" layoutY="349.0" prefHeight="16.0" prefWidth="223.0" textFill="#ff3d3d">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />

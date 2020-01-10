@@ -18,7 +18,7 @@ public class RegisterPresenter extends Presenter {
     public void validUser(String email, String name, String city, String country, String ZIP, String password){
         if(view.checkEmail(email) && (view.checkName(name) && (view.checkPassword(password) && (view.checkAdress(city, country, ZIP))))){
             model.registerUser(email, name, city, country, ZIP, view.hashPassword(password));
-            System.out.println("Valid input, user registered.");
+            System.out.println("Valid input, user register data passed to model.");
         } else {
             System.out.println("Invalid input");
             view.checkName(name);
@@ -36,6 +36,9 @@ public class RegisterPresenter extends Presenter {
     // metoda, která se provede po neúspěšné registraci
     public void registerFailed() {
         System.out.println("Register failed");
+        view.showUserExists();
+
+
     }
 
     // metoda, která se provede po úspěšné registraci - změní scénu na mainScreen

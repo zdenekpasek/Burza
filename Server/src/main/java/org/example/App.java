@@ -3,6 +3,7 @@ package org.example;
 import Model.Entities.Category;
 import Model.Entities.Product;
 import Model.Entities.Users;
+import javafx.collections.ObservableList;
 import org.example.DAO.CategoryDAO;
 import org.example.DAO.ProductDAO;
 import org.example.DAO.UserDAO;
@@ -10,12 +11,13 @@ import org.example.DAO.UserDAO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
 public class App {
     public static void main(String[] args) {
-        String userEmail = "zdnenekk@gmail.com";
+        String userEmail = "zdnenek@gmail.com";
         String userName = "zdenek";
         String userPassword = "testpass";
 
@@ -25,17 +27,37 @@ public class App {
 
 
         Users user = new Users(userEmail, userName, userPassword);
-        Category category = new Category(categoryName, categoryDescription);
-        File file = new File("C:\\Users\\zdenek\\Documents\\NetworkEshop\\Client\\src\\main\\resources\\img\\ic_email_24px.png");
-        byte[] bFile = new byte[(int) file.length()];
-        try{
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bFile);
-            fileInputStream.close();
-        } catch (Exception e){
-            e.printStackTrace();
 
+
+        for(Product prod : Objects.requireNonNull(ProductDAO.selectAllProductsObj())){
+            System.out.println(prod.getProductName() + " desc " + prod.getProductDescription());
         }
+
+
+
+//        ProductDAO.selectAllProductsObj()
+//        for(Product p : ProductDAO.selectAllProductsObj()){
+//            System.out.println(p.getProductName());
+//        }
+
+//        UserDAO.getUserDetails(userEmail);
+//
+//        for(Object[] product : ProductDAO.selectAllProducts()){
+//            System.out.println(product[0] + " : " + product[1] + " : " + product[2] + " : " + product[3]);
+//        }
+
+
+//        Category category = new Category(categoryName, categoryDescription);
+//        File file = new File("C:\\Users\\zdenek\\Documents\\NetworkEshop\\Client\\src\\main\\resources\\img\\ic_email_24px.png");
+//        byte[] bFile = new byte[(int) file.length()];
+//        try{
+//            FileInputStream fileInputStream = new FileInputStream(file);
+//            fileInputStream.read(bFile);
+//            fileInputStream.close();
+//        } catch (Exception e){
+//            e.printStackTrace();
+//
+//        }
 
 //        Product product = new Product("Produuuuct", 11122, "Popisek");
 //        if(ProductDAO.addProduct(product.getProductName(),product.getProductPrice(),product.getProductDescription(), bFile, user, category)){

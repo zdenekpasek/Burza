@@ -1,25 +1,12 @@
 import Services.SceneService;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-//import Controller;
-import Services.NetworkService;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import javafx.stage.Stage;
+
+import Services.NetworkService;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
 
 public class ClientLauncher extends Application {
 
@@ -29,16 +16,19 @@ public class ClientLauncher extends Application {
 
     }
 
-
     public static void main(String[] args) {
         String hostName = "127.0.0.1";
         int portNumber = 36936;
 
         try (Socket echoSocket = new Socket(hostName, portNumber);
-             BufferedReader in = new BufferedReader((new InputStreamReader(echoSocket.getInputStream())));
-             PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);) {
+             InputStream is = echoSocket.getInputStream();
+             OutputStream os = echoSocket.getOutputStream();
+             BufferedReader in = new BufferedReader((new InputStreamReader(is)));
+             PrintWriter out = new PrintWriter(os, true);) {
             NetworkService.INPUT = in;
             NetworkService.OUTPUT = out;
+            NetworkService.OBJOUTPUT = new ObjectOutputStream(os);
+            NetworkService.OBJINPUT = new ObjectInputStream(is);
             if (in.readLine().equals("USERCONNECTED")) {
                 launch(args);
             }else{

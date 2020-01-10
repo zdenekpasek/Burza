@@ -82,4 +82,28 @@ public class ProductDAO {
         return null;
     }
 
+    public static List<Product> selectAllProductsObj(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Product");
+            List<Product> allProductsFromDb = (List<Product>)query.list();
+            tx.commit();
+
+            return allProductsFromDb;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+
+
 }

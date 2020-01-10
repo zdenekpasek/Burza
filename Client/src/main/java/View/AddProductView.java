@@ -52,6 +52,14 @@ public class AddProductView extends View implements Initializable {
     @FXML
     private Label pathLabel;
 
+    @FXML
+    private Label addedProductLabel;
+
+    @FXML
+    private Label errorProductLabel;
+
+
+
     private String chosenFilePath = "";
 
 
@@ -121,6 +129,16 @@ public class AddProductView extends View implements Initializable {
         presenter.validProduct(name, description, price, chosenFilePath);
     }
 
+    public void productAdded(){
+        addedProductLabel.setText("Product added!");
+        addedProductLabel.setVisible(true);
+    }
+
+    public void productNotAdded() {
+        errorProductLabel.setText("Error while adding product!");
+        errorProductLabel.setVisible(true);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new AddProductPresenter(this);
@@ -146,4 +164,6 @@ public class AddProductView extends View implements Initializable {
         });
 
     }
+
+
 }

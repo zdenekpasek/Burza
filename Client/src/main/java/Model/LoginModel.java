@@ -2,6 +2,7 @@ package Model;
 
 import Presenter.LoginPresenter;
 import Services.NetworkService;
+import Services.UserService;
 
 import java.io.IOException;
 
@@ -21,6 +22,13 @@ public class LoginModel {
         try{
             switch(NetworkService.readMessage()){
                 case NetworkService.LOGIN_SUCCESS: {
+                    UserService.email = NetworkService.readMessage();
+                    UserService.username = NetworkService.readMessage();
+                    UserService.adressCity = NetworkService.readMessage();
+                    UserService.adressZip = NetworkService.readMessage();
+                    UserService.adressCountry = NetworkService.readMessage();
+
+
                     presenter.loginSuccessful();
                     break;
                 }

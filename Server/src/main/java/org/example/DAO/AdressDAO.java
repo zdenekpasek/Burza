@@ -33,6 +33,29 @@ public class AdressDAO {
         return userId > 0;
     }
 
+    public static Object[] selectAdress(int userID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select adressCity, adressCountry, adressZIP from Adress where userID= :userID");
+            query.setParameter("userID", userID);
+            Object[] adress = (Object[])query.uniqueResult();
+            tx.commit();
+
+            return adress;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
     public static List<String> getAdressDetails(String userID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

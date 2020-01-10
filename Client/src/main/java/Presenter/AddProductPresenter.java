@@ -28,8 +28,13 @@ public class AddProductPresenter extends Presenter {
     }
 
     public void addProductSucessfull() {
+        System.out.println("Product added!");
+        view.productAdded();
+
     }
 
     public void addProductFailed() {
+        System.out.println("Error while adding product!");
+        view.productNotAdded();
     }
 }

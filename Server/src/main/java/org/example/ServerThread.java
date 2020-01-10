@@ -1,6 +1,8 @@
 package org.example;
 
+import Model.Entities.Adress;
 import Model.Entities.Category;
+import Model.Entities.Product;
 import Model.Entities.Users;
 import org.example.DAO.AdressDAO;
 import org.example.DAO.CategoryDAO;
@@ -17,6 +19,8 @@ import java.util.Objects;
 
 import Services.NetworkService;
 
+import javax.jws.soap.SOAPBinding;
+
 public class ServerThread{
 
     public static final String REGISTER = "1";
@@ -25,6 +29,9 @@ public class ServerThread{
     public static final String ADD_PRODUCT = "4";
     public static final String REMOVE_PRODUCT = "5";
     public static final String CATEGORY_SEND = "6";
+    public static final String BUY_PRODUCT = "7";
+    public static final String GET_ALL_PRODUCTS = "8";
+    public static final String SEND_ALL_PRODUCTS = "800";
 
     public static final String ADD_PRODUCT_SUCCESS = "400";
     public static final String ADD_PRODUCT_FAIL = "401";
@@ -32,6 +39,11 @@ public class ServerThread{
     public static final String REMOVE_PRODUCT_SUCCESS = "500";
     public static final String REMOVE_PRODUCT_FAIL = "501";
 
+    public static final String BUY_PRODUCT_SUCCESS = "700";
+    public static final String BUY_PRODUCT_FAIL = "701";
+
+    public static final String GET_ALL_PRODUCTS_SUCCESS = "800";
+    public static final String GET_ALL_PRODUCTS_FAIL = "801";
 
     public static final String LOGIN_SUCCESS = "200";
     public static final String LOGIN_FAIL = "201";
@@ -49,6 +61,8 @@ public class ServerThread{
                 try {
                     PrintWriter out = new PrintWriter(client.getOutputStream(), true);
                     BufferedReader in = new BufferedReader((new InputStreamReader(client.getInputStream())));
+                    ObjectInputStream objIn = new ObjectInputStream(client.getInputStream());
+                    ObjectOutputStream objOut = new ObjectOutputStream(client.getOutputStream());
                     out.println("USERCONNECTED");
 //                    BufferedImage image = ImageIO.read(new File("D:\\NetworkEshop\\Server\\src\\main\\resources\\unknown.png"));
 //
@@ -61,8 +75,8 @@ public class ServerThread{
 //
 //                    client.getOutputStream().flush();
 //                    client.getOutputStream().close();
-                    handleUserAction(out, in);
-                } catch (IOException e) {
+                    handleUserAction(out, in, objIn, objOut);
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
                 try {
@@ -79,8 +93,9 @@ public class ServerThread{
         NetworkService.sendMessage(Objects.requireNonNull(CategoryDAO.getCategories()).toString());
     }
 
+
     // metoda pro obsluhu klienta, příjmá zprávy od klienta a podle nich se volají specifické metody
-    private void handleUserAction(PrintWriter out, BufferedReader in) throws IOException {
+    private void handleUserAction(PrintWriter out, BufferedReader in, ObjectInputStream objIn,  ObjectOutputStream objOut) throws IOException, ClassNotFoundException {
         while(true){
             String message = in.readLine();
             switch(message){
@@ -93,8 +108,17 @@ public class ServerThread{
                     break;
                 }
                 case ADD_PRODUCT:{
-                    addProduct(out, in);
+                    addProduct(out, in, objIn, objOut);
                     break;
+                }
+                case REMOVE_PRODUCT:{
+                    removeProduct(out, in);
+                }
+                case GET_ALL_PRODUCTS:{
+                    getAllProducts();
+                }
+                case BUY_PRODUCT:{
+                    buyProduct(out, in);
                 }
                 default: {
                     System.out.println("Wrong message   " + message);
@@ -103,19 +127,29 @@ public class ServerThread{
         }
     }
 
+    private void buyProduct(PrintWriter out, BufferedReader in) {
+    }
+
+    private void getAllProducts() {
+        NetworkService.sendMessage(ProductDAO.selectAllProductsObj());
+        NetworkService.sendMessage(NetworkService.SEND_ALL_PRODUCTS);
+    }
+
+    private void removeProduct(PrintWriter out, BufferedReader in) {
+    }
+
     // metoda přijme data o produktu od klienta ve formě pole Stringů, tyto data naplní do metody addProduct v Data Access Objectu
     // a ta data pošle do databáze, jakmile tato metoda proběhne úspěšně, pošle klientovi zprávu o úspěchu a naopak
-    private void addProduct(PrintWriter out, BufferedReader in) throws IOException{
+    private void addProduct(PrintWriter out, BufferedReader in, ObjectInputStream objIn, ObjectOutputStream objOut) throws IOException, ClassNotFoundException {
         // productName == productData[0] ; productDescription == productData[1] ; productPrice == productData[2] ; productPhotoPath == productData[3]
-        String[] productData = new String[4];
-        for(int i = 0; i < 4; i++){
+        String[] productData = new String[3];
+        for(int i = 0; i < 3; i++){
             productData[i] = in.readLine();
         }
+        byte[] image = (byte[])objIn.readObject();
         Category category = new Category("Hadasd", "dasdsd");
-        System.out.println(Arrays.toString(productData[3].getBytes()));
-        if(ProductDAO.addProduct(productData[0], Integer.parseInt(productData[2]), productData[1], productData[3].getBytes(), loggedUser, category )){
+        if(ProductDAO.addProduct(productData[0], Integer.parseInt(productData[2]), productData[1], image, loggedUser, category )){
             out.println(ADD_PRODUCT_SUCCESS);
-            out.println(Arrays.toString(ProductDAO.selectProduct(productData[0]).getProductPhoto()));
         }
         out.println(ADD_PRODUCT_FAIL);
     }
@@ -140,9 +174,31 @@ public class ServerThread{
         }
 
         if(UserDAO.authUser(loginData[0]) && validatePassword(loginData[1], UserDAO.getHash(loginData[0]) )){
-            System.out.println("User successfully authorized!");
             out.println(LOGIN_SUCCESS);
             loggedUser = loginData[0];
+            System.out.println("User successfully authorized!");
+            Users user = UserDAO.selectUser(loginData[0]);
+            int userID = UserDAO.selectUserID(loginData[0]);
+            Object[] adress = AdressDAO.selectAdress(userID);
+            String[] userData = {user.getUserEmail(), user.getUserName()};
+            String []adressDataArray = Arrays.copyOf(adress, adress.length, String[].class);
+            for(String userValue : userData){
+                out.println(userValue);
+            }
+            for(String adressValue : adressDataArray){
+                out.println(adressValue);
+            }
+
+
+            for(int i = 0; i < adressDataArray.length; i++){
+                System.out.println(adressDataArray[i]);
+            }
+
+            for(int i = 0; i < 2; i++){
+                System.out.println(userData[i]);
+            }
+
+//            out.println(loggedUser);
         } else{
             System.out.println("Error while authorizing user.");
             out.println(LOGIN_FAIL);
@@ -159,9 +215,9 @@ public class ServerThread{
             user[i] = in.readLine();
         }
         Users userTest = new Users(user[0],  user[1], user[5]);
-        if(UserDAO.addUser(userTest) && (AdressDAO.addAdress(user[2], user[3], user[4], userTest))){
-            System.out.println("User added");
-            System.out.println("Adress added");
+        if(!UserDAO.authUser(user[0])){
+            UserDAO.addUser(userTest);
+            AdressDAO.addAdress(user[2], user[3], user[4], userTest);
             out.println(REGISTER_SUCCESS);
         } else{
             System.out.println("Error while adding user");

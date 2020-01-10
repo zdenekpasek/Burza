@@ -33,7 +33,6 @@ public class ServerThread{
     public static final String REMOVE_PRODUCT_FAIL = "501";
 
 
-
     public static final String LOGIN_SUCCESS = "200";
     public static final String LOGIN_FAIL = "201";
     public static final String REGISTER_SUCCESS = "100";
@@ -80,6 +79,7 @@ public class ServerThread{
         NetworkService.sendMessage(Objects.requireNonNull(CategoryDAO.getCategories()).toString());
     }
 
+    // metoda pro obsluhu klienta, příjmá zprávy od klienta a podle nich se volají specifické metody
     private void handleUserAction(PrintWriter out, BufferedReader in) throws IOException {
         while(true){
             String message = in.readLine();
@@ -103,9 +103,10 @@ public class ServerThread{
         }
     }
 
+    // metoda přijme data o produktu od klienta ve formě pole Stringů, tyto data naplní do metody addProduct v Data Access Objectu
+    // a ta data pošle do databáze, jakmile tato metoda proběhne úspěšně, pošle klientovi zprávu o úspěchu a naopak
     private void addProduct(PrintWriter out, BufferedReader in) throws IOException{
         // productName == productData[0] ; productDescription == productData[1] ; productPrice == productData[2] ; productPhotoPath == productData[3]
-
         String[] productData = new String[4];
         for(int i = 0; i < 4; i++){
             productData[i] = in.readLine();
@@ -119,6 +120,7 @@ public class ServerThread{
         out.println(ADD_PRODUCT_FAIL);
     }
 
+    // metoda porovnává plain text heslo zadané z user inputu s zahashovaným heslem z databáze, vrací true při úspšchu
     private boolean validatePassword(String plainPassword, String hashPassword){
         if(BCrypt.checkpw(plainPassword, hashPassword)){
             return true;
@@ -126,6 +128,10 @@ public class ServerThread{
         return false;
     }
 
+    // metoda přijme email a heslo od klienta ve formě pole Stringů, email předá do Data Access Object metody authUser,
+    // která porovná zda v databázi existuje uživatel se zadaným emailem.
+    // dále vezme plain text heslo a porovná ho s zahashovaným heslem v databázi, jakmile splní všechny podmínky
+    // pošle klientovi zprávu o úspěšném loginu a naopak
     private void login(PrintWriter out, BufferedReader in) throws IOException {
         // email == loginData[0] ; password == loginData[1]
         String[] loginData = new String[2];
@@ -144,6 +150,8 @@ public class ServerThread{
 
     }
 
+    // metoda přijme data o Userovi od klienta ve formě pole Stringů, tyto data naplní do metody addUser v Data Access Objectu
+    // a ta data pošle do databáze, jakmile tato metoda proběhne úspěšně, pošle klientovi zprávu o úspěchu a naopak
     private void register(PrintWriter out, BufferedReader in) throws IOException {
         // email == user[0] ; name == user[1] ; city == user[2] ; country == user[3] ; ZIP == user[4] ; password == [5]
         String[] user = new String[6];

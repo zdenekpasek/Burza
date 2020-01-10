@@ -4,6 +4,7 @@ import Presenter.ProfilePresenter;
 import Services.SceneService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -17,6 +18,20 @@ public class ProfileView extends View implements Initializable  {
 
     @FXML
     private Circle testCircle;
+
+    @FXML
+    private Label nameLabelFromDb;
+
+    @FXML
+    private Label emailLabelFromDb;
+
+    @FXML
+    private Label countryLabelFromDb;
+
+    @FXML
+    private Label ordersLabelFromDb;
+
+
 
     private ProfilePresenter presenter;
 

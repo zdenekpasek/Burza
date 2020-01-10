@@ -26,7 +26,7 @@
                   <Image url="@img/monkas.png" />
                </image>
             </ImageView>
-            <VBox layoutX="168.0" layoutY="21.0" prefHeight="200.0" prefWidth="69.0" spacing="20.0">
+            <VBox layoutX="155.0" layoutY="21.0" prefHeight="230.0" prefWidth="82.0" spacing="20.0">
                <children>
                   <Label text="Name:" textFill="#4a4a4a">
                      <font>
@@ -38,7 +38,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Adress:" textFill="#4a4a4a">
+                  <Label text="City:" textFill="#4a4a4a">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Country:" textFill="#4a4a4a">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -52,22 +57,27 @@
             </VBox>
             <VBox layoutX="240.0" layoutY="22.0" prefHeight="200.0" prefWidth="215.0" spacing="20.0">
                <children>
-                  <Label text="Zdenek Pasek" textFill="#4a4a4a">
+                  <Label fx:id="nameLabelFromDb" text="Zdenek Pasek" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="monkas@monka.kk" textFill="#4a4a4a">
+                  <Label fx:id="emailLabelFromDb" text="monkas@monka.kk" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Random shit" textFill="#4a4a4a">
+                  <Label fx:id="cityLabelFromDb" text="Random shit" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="5" textFill="#4a4a4a">
+                  <Label fx:id="countryLabelFromDb" text="5" textFill="#4a4a4a">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ordersLabelFromDb" text="5" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

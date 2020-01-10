@@ -23,7 +23,7 @@ public class AddProductView extends View implements Initializable {
     private AddProductPresenter presenter;
 
     private final int MIN_PRICE = 0;
-    private final int MAX_PRICE = 999999;
+    private final int MAX_PRICE = 9999999;
 
     @FXML
     private TextField nameInput;
@@ -56,7 +56,9 @@ public class AddProductView extends View implements Initializable {
 
 
 
-
+    // validuje jméno produktu podle regulárního výrazu
+    // jméno může obsahovat malá, velká písmena, čísla, podtržítko, pomlčku
+    // a musí mít minimálně 4 znaky a maximálně 16
     public boolean checkProductName(String name){
         Pattern namePattern = Pattern.compile("^[a-zA-Z0-9_-]{4,16}$");
         Matcher mtch = namePattern.matcher(name);
@@ -70,6 +72,7 @@ public class AddProductView extends View implements Initializable {
         }
     }
 
+    // validuje popis produktu, který má omezení na 100 znaků
     public boolean checkProductDescription(String description){
         if(description.length() > 100){
             errorDescription.setVisible(true);
@@ -80,6 +83,7 @@ public class AddProductView extends View implements Initializable {
         }
     }
 
+    // validuje cenu produktu
     public boolean checkProductPrice(int price){
         if((price > MIN_PRICE) && (price < MAX_PRICE )){
             return true;
@@ -90,7 +94,8 @@ public class AddProductView extends View implements Initializable {
         }
     }
 
-
+    // metoda, která po kliknutí tlačítka v addProductScreenu otevře okno pro výběr obrázku (jpg, png)
+    // pokud obrázek není null, metoda vrátí cestu k souboru a vypíše jí na obrazovku
     public String fileChoose(){
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
@@ -106,6 +111,7 @@ public class AddProductView extends View implements Initializable {
 
     }
 
+    // vezme user inputy o produktu a předá je presenteru
     @FXML
     void addProduct(ActionEvent evt){
         String name = nameInput.getText();

@@ -35,29 +35,33 @@ public class AddProductModel {
         try{
             switch(NetworkService.readMessage()){
                 case NetworkService.ADD_PRODUCT_SUCCESS: {
-                    System.out.println("Server response 1");
+
+                    String test = Arrays.toString(bFile);
+                    byte[] ripByte =new byte[test.length()];
+                    int i = 0;
+                    for(String testString : test.split(",")){
+                        ripByte[i] = testString;
+                    }
+
 
                     ByteArrayInputStream bis2 = new ByteArrayInputStream(bFile);
                     BufferedImage bImage3 = ImageIO.read(bis2);
                     ImageIO.write(bImage3, "png", new File("outputOriginal.png") );
+                    System.out.println("image done");
 
-                    byte [] data = NetworkService.readMessage().getBytes();
-                    ByteArrayInputStream bis = new ByteArrayInputStream(data);
-                    BufferedImage bImage2 = ImageIO.read(bis);
-                    ImageIO.write(bImage2, "png", new File("output.png") );
-
-                    System.out.println("image created");
+            //        byte [] data = NetworkService.readMessage().getBytes();
+            //        ByteArrayInputStream bis = new ByteArrayInputStream(data);
+            //        BufferedImage bImage2 = ImageIO.read(bis);
+            //        ImageIO.write(bImage2, "png", new File("output.png") );
                     presenter.addProductSucessfull();
                     break;
                 }
                 case NetworkService.ADD_PRODUCT_FAIL: {
-                    System.out.println("Server response 2");
                     presenter.addProductFailed();
                     break;
                 }
                 default:
                     presenter.error();
-                    System.out.println("Server response 3");
             }
         } catch (IOException ex) {
             ex.printStackTrace();

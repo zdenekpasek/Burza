@@ -10,7 +10,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.AUTO;
 
-@Entity(name = "Product")
+@Entity
 @Table(name = "Product")
 @Data
 @NoArgsConstructor

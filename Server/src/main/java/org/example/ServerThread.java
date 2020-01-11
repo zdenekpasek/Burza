@@ -159,25 +159,35 @@ public class ServerThread{
     private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {
         String data = in.readLine();
         Product prodToRemove = ProductDAO.selectProduct(data);
+        String productName = prodToRemove.getProductName();
+        int userID = UserDAO.selectUserID(loggedUser);
+        int categoryID = ProductDAO.selectCategoryID(productName);
 
-        out.println(REMOVE_PRODUCT_SUCCESS);
-        System.out.println("success");
+        if(ProductDAO.removeProduct(productName, userID) && CategoryDAO.deleteCategory(categoryID)){
+            out.println(REMOVE_PRODUCT_SUCCESS);
+            System.out.println("success removing product");
+        } else{
+            out.println(REMOVE_PRODUCT_FAIL);
+            System.out.println("Fail removing product");
+        }
     }
 
     // metoda přijme data o produktu od klienta ve formě pole Stringů, tyto data naplní do metody addProduct v Data Access Objectu
     // a ta data pošle do databáze, jakmile tato metoda proběhne úspěšně, pošle klientovi zprávu o úspěchu a naopak
     private void addProduct(PrintWriter out, BufferedReader in, ObjectInputStream objIn, ObjectOutputStream objOut) throws IOException, ClassNotFoundException {
         // productName == productData[0] ; productDescription == productData[1] ; productPrice == productData[2] ; productPhotoPath == productData[3]
-        String[] productData = new String[3];
-        for(int i = 0; i < 3; i++){
+        String[] productData = new String[4];
+        for(int i = 0; i < 4; i++){
             productData[i] = in.readLine();
         }
         byte[] image = (byte[])objIn.readObject();
-        Category category = new Category("Hadasd", "dasdsd");
+        Category category = new Category(productData[3], "");
         if(ProductDAO.addProduct(productData[0], Integer.parseInt(productData[2]), productData[1], image, loggedUser, category )){
             out.println(ADD_PRODUCT_SUCCESS);
+        } else{
+            out.println(ADD_PRODUCT_FAIL);
         }
-        out.println(ADD_PRODUCT_FAIL);
+
     }
 
     // metoda porovnává plain text heslo zadané z user inputu s zahashovaným heslem z databáze, vrací true při úspšchu
@@ -240,11 +250,15 @@ public class ServerThread{
         for(int i = 0; i < 6; i++){
             user[i] = in.readLine();
         }
+        String[] profileData = new String[]{user[0], user[1], user[2], user[3], user[4]};
         Users userTest = new Users(user[0],  user[1], user[5]);
         if(!UserDAO.authUser(user[0])){
             UserDAO.addUser(userTest);
             AdressDAO.addAdress(user[2], user[3], user[4], userTest);
             out.println(REGISTER_SUCCESS);
+            for(String profileInfo : profileData){
+                out.println(profileInfo);
+            }
         } else{
             System.out.println("Error while adding user");
             out.println(REGISTER_FAIL);

@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 public class AddProductModel {
     private AddProductPresenter presenter;
 
-    public void addProduct(String productName, String productDescription, int productPrice, String productPhotoPath) {
+    public void addProduct(String productName, String productDescription, int productPrice, String productPhotoPath, String category) {
         File file = new File(productPhotoPath);
         byte[] bFile = new byte[(int) file.length()];
         try{
@@ -26,7 +26,7 @@ public class AddProductModel {
             e.printStackTrace();
         }
         System.out.println(Arrays.toString(bFile));
-        String[] productData = new String[]{productName, productDescription, Integer.toString(productPrice)};
+        String[] productData = new String[]{productName, productDescription, Integer.toString(productPrice), category};
 
         System.out.println("Sending data to server");
         NetworkService.sendMessage(NetworkService.ADD_PRODUCT);

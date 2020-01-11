@@ -2,6 +2,7 @@ package Model;
 
 import Presenter.RegisterPresenter;
 import Services.NetworkService;
+import Services.UserService;
 
 import java.io.IOException;
 
@@ -23,6 +24,11 @@ public class RegisterModel {
         try{
             switch(NetworkService.readMessage()){
                 case NetworkService.REGISTER_SUCCESS: {
+                    UserService.email = NetworkService.readMessage();
+                    UserService.username = NetworkService.readMessage();
+                    UserService.adressCity = NetworkService.readMessage();
+                    UserService.adressZip = NetworkService.readMessage();
+                    UserService.adressCountry = NetworkService.readMessage();
                     presenter.registerSuccesful();
                     break;
                 }

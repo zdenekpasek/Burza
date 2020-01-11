@@ -126,7 +126,7 @@ public class AddProductView extends View implements Initializable {
         String description = descriptionInput.getText();
         String priceText = priceInput.getText();
         int price = Integer.parseInt(priceText);
-        presenter.validProduct(name, description, price, chosenFilePath);
+        presenter.validProduct(name, description, price, chosenFilePath, categoryInput.getText());
     }
 
     public void productAdded(){

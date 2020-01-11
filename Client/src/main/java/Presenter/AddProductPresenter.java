@@ -11,9 +11,9 @@ public class AddProductPresenter extends Presenter {
     private AddProductView view;
     private AddProductModel model;
 
-    public void validProduct(String productName, String productDescription, int productPrice, String productPhotoPath){
+    public void validProduct(String productName, String productDescription, int productPrice, String productPhotoPath, String category){
         if(view.checkProductName(productName) && view.checkProductDescription(productDescription) && view.checkProductPrice(productPrice)){
-            model.addProduct(productName, productDescription, productPrice, productPhotoPath);
+            model.addProduct(productName, productDescription, productPrice, productPhotoPath, category);
             System.out.println("Valid input, product added.");
         } else{
             System.out.println("Invalid input");

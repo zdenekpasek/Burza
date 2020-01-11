@@ -5,6 +5,7 @@ import Presenter.MainPresenter;
 import Services.SceneService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -60,6 +61,10 @@ public class MainView extends View implements Initializable {
 //        for(ProductData data : list){
 //            System.out.println(data.getProductID() + " " + data.getProductName() + " " + data.getCategory() + " " + data.getProductDescription() + " " + data.getProductPrice());
 //        }
+        table.getItems().clear();
         table.setItems(list);
+    }
+
+    public void showPicture(ActionEvent actionEvent) {
     }
 }

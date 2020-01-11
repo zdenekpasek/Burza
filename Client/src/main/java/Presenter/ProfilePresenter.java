@@ -13,6 +13,6 @@ public class ProfilePresenter extends Presenter{
     public ProfilePresenter (ProfileView view) {
         this.view = view;
         model = new ProfileModel(this);
-        view.setUserProfile(UserService.username, UserService.email, UserService.adressCountry, UserService.adressCity);
+        view.setUserProfile(UserService.username, UserService.email, UserService.adressCountry, UserService.adressCity, UserService.adressZip);
     }
 }

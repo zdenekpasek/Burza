@@ -1,9 +1,12 @@
 package Presenter;
 
 import Model.MainModel;
+import Model.ProductData;
 import Presenter.Presenter;
 import Services.SceneService;
 import View.MainView;
+
+import java.util.List;
 
 
 public class MainPresenter extends Presenter {
@@ -21,5 +24,10 @@ public class MainPresenter extends Presenter {
     }
 
     public void getAllProducts() {
+        model.handleServerAction();
+    }
+
+    public void setAllProducts(List<ProductData> products) {
+        view.setTableData(products);
     }
 }

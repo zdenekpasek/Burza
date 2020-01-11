@@ -48,6 +48,11 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <Label text="ZIP:" textFill="#4a4a4a">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                   <Label text="Orders:" textFill="#4a4a4a">
                      <font>
                         <Font size="20.0" />
@@ -55,7 +60,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox layoutX="240.0" layoutY="22.0" prefHeight="200.0" prefWidth="215.0" spacing="20.0">
+            <VBox layoutX="240.0" layoutY="22.0" prefHeight="280.0" prefWidth="215.0" spacing="20.0">
                <children>
                   <Label fx:id="nameLabelFromDb" textFill="#4a4a4a">
                      <font>
@@ -73,6 +78,11 @@
                      </font>
                   </Label>
                   <Label fx:id="countryLabelFromDb" textFill="#4a4a4a">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="adressZIPfromDb" textFill="#4a4a4a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

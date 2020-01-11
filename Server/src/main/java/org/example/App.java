@@ -21,6 +21,9 @@ public class App {
         String userName = "zdenek";
         String userPassword = "testpass";
 
+        String productName = "Produkt2";
+        int userID = 23;
+
         String categoryName = "Caaaat";
         String categoryDescription = "ssssss";
         Date date = new Date();
@@ -29,9 +32,17 @@ public class App {
         Users user = new Users(userEmail, userName, userPassword);
 
 
-        for(Product prod : Objects.requireNonNull(ProductDAO.selectAllProductsObj())){
-            System.out.println(prod.getProductName() + " desc " + prod.getProductDescription());
+        int categoryID = ProductDAO.selectCategoryID(productName);
+
+//        System.out.println(categoryID);
+        if(CategoryDAO.deleteCategory(categoryID) && ProductDAO.removeProduct(productName, userID)){
+            System.out.println("success");
         }
+
+
+//        for(Product prod : Objects.requireNonNull(ProductDAO.selectAllProductsObj())){
+//            System.out.println(prod.getProductName() + " desc " + prod.getProductDescription());
+//        }
 
 
 

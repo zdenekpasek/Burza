@@ -27,7 +27,7 @@ public class Category implements Serializable{
     @Column(name = "categoryDescription", nullable = false, length = 30)
     private String categoryDescription;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
 //    @OneToMany(

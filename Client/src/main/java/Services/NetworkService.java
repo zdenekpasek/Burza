@@ -42,6 +42,10 @@ public class NetworkService {
         return INPUT.readLine();
     }
 
+    public static Object readObjectMessage() throws IOException, ClassNotFoundException {
+        return OBJINPUT.readObject();
+    }
+
     public static void sendMessage(final String message){
         Thread t = new Thread(new Runnable() {
             @Override

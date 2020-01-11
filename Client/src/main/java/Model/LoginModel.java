@@ -28,7 +28,6 @@ public class LoginModel {
                     UserService.adressZip = NetworkService.readMessage();
                     UserService.adressCountry = NetworkService.readMessage();
 
-
                     presenter.loginSuccessful();
                     break;
                 }

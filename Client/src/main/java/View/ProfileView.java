@@ -34,6 +34,8 @@ public class ProfileView extends View implements Initializable  {
     @FXML
     private Label ordersLabelFromDb;
 
+    @FXML
+    private Label adressZIPfromDb;
 
 
     private ProfilePresenter presenter;
@@ -45,10 +47,11 @@ public class ProfileView extends View implements Initializable  {
 
     }
 
-    public void setUserProfile(String userName, String email, String country, String city){
+    public void setUserProfile(String userName, String email, String country, String city, String adressZIP){
         cityLabelFromDb.setText(city);
         nameLabelFromDb.setText(userName);
         emailLabelFromDb.setText(email);
         countryLabelFromDb.setText(country);
+        adressZIPfromDb.setText(adressZIP);
     }
 }

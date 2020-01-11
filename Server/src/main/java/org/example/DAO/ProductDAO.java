@@ -35,6 +35,55 @@ public class ProductDAO {
         return productID > 0;
     }
 
+    public static boolean removeProduct(String productName, int userID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("delete from Product where productName= :productName AND userID= :userID");
+            query.setParameter("productName", productName);
+            query.setParameter("userID", userID);
+            query.executeUpdate();
+            tx.commit();
+
+            return true;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public static int selectCategoryID(String productName){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select category.categoryID from Product WHERE productName = :productName");
+            query.setParameter("productName", productName);
+//            Category test = (Category) query.uniqueResult();
+            int categoryID = (int)query.uniqueResult();
+            tx.commit();
+
+            return categoryID;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return 0;
+    }
+
 
     // selectuje z databáze product podle jména produktu, vrací celý objekt Product
     public static Product selectProduct(String productName){

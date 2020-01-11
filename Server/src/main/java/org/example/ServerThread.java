@@ -4,6 +4,7 @@ import Model.Entities.Adress;
 import Model.Entities.Category;
 import Model.Entities.Product;
 import Model.Entities.Users;
+import Services.NetworkService;
 import org.example.DAO.AdressDAO;
 import org.example.DAO.CategoryDAO;
 import org.example.DAO.ProductDAO;
@@ -13,11 +14,11 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import Services.NetworkService;
 
 import javax.jws.soap.SOAPBinding;
 
@@ -32,6 +33,7 @@ public class ServerThread{
     public static final String BUY_PRODUCT = "7";
     public static final String GET_ALL_PRODUCTS = "8";
     public static final String SEND_ALL_PRODUCTS = "800";
+
 
     public static final String ADD_PRODUCT_SUCCESS = "400";
     public static final String ADD_PRODUCT_FAIL = "401";
@@ -113,12 +115,15 @@ public class ServerThread{
                 }
                 case REMOVE_PRODUCT:{
                     removeProduct(out, in);
+                    break;
                 }
                 case GET_ALL_PRODUCTS:{
-                    getAllProducts();
+                    getAllProducts(objOut, out);
+                    break;
                 }
                 case BUY_PRODUCT:{
                     buyProduct(out, in);
+                    break;
                 }
                 default: {
                     System.out.println("Wrong message   " + message);
@@ -130,12 +135,33 @@ public class ServerThread{
     private void buyProduct(PrintWriter out, BufferedReader in) {
     }
 
-    private void getAllProducts() {
-        NetworkService.sendMessage(ProductDAO.selectAllProductsObj());
-        NetworkService.sendMessage(NetworkService.SEND_ALL_PRODUCTS);
+    private void getAllProducts(ObjectOutputStream objOut, PrintWriter out) {
+        try {
+            List<Product> products = ProductDAO.selectAllProductsObj();
+            List<String[]> productStrings = new ArrayList<>();
+            for(Product product : products){
+                String[] convertedProducts = new String[5];
+                convertedProducts[0] = product.getProductID() + "";
+                convertedProducts[1] = product.getProductName();
+                convertedProducts[2] = product.getCategory().getCategoryName();
+                convertedProducts[3] = product.getProductDescription();
+                convertedProducts[4] = product.getProductPrice() + "";
+                productStrings.add(convertedProducts);
+            }
+            objOut.writeObject(productStrings);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            out.println(GET_ALL_PRODUCTS_FAIL);
+        }
+        out.println(GET_ALL_PRODUCTS_SUCCESS);
     }
 
-    private void removeProduct(PrintWriter out, BufferedReader in) {
+    private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {
+        String data = in.readLine();
+        Product prodToRemove = ProductDAO.selectProduct(data);
+
+        out.println(REMOVE_PRODUCT_SUCCESS);
+        System.out.println("success");
     }
 
     // metoda přijme data o produktu od klienta ve formě pole Stringů, tyto data naplní do metody addProduct v Data Access Objectu

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// view pro registraci uživatele, předává data presenteru
 public class RegisterView implements Initializable {
 
     private RegisterPresenter presenter;
@@ -51,6 +52,7 @@ public class RegisterView implements Initializable {
     @FXML
     private Label userExistsLabel;
 
+    // metoda, která přepne scénu na loginScreen
     public void goToSignInScreen(){
         presenter.openWindow("loginScreen.fxml");
     }
@@ -143,6 +145,9 @@ public class RegisterView implements Initializable {
         errorAdress.setVisible(false);
     }
 
+    // metoda, která se volá pokud při registraci již existuje uživatel se zadaným emailem
+    // nastavuje a zobrazuje label
+    // provádí znovu validaci
     public void showUserExists(){
         userExistsLabel.setText("User with this email already exists!");
         userExistsLabel.setVisible(true);
@@ -162,7 +167,5 @@ public class RegisterView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new RegisterPresenter(this);
-
     }
-
 }

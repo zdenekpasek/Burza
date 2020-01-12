@@ -1,9 +1,11 @@
 package Services;
 
-import lombok.SneakyThrows;
-
 import java.io.*;
 
+// třída, která slouží pro komunikaci mezi klientem a serverem
+// klient posílá zprávy serveru ve formě stringů, server na tyto zprávy reaguje
+// a podle nich vykonává určité operace
+// dále obsahuje metody pro čtení a posílání zpráv
 public class NetworkService {
 
     public static BufferedReader INPUT;
@@ -44,14 +46,17 @@ public class NetworkService {
 
     public static final String SHOW_PICTURE = "900";
 
+    // metoda pro čtení zpráv (Stringů)
     public static String readMessage() throws IOException {
         return INPUT.readLine();
     }
 
+    // metoda pro čtení zpráv (Objektů)
     public static Object readObjectMessage() throws IOException, ClassNotFoundException {
         return OBJINPUT.readObject();
     }
 
+    // metoda pro posílná zpráv v samostatném threadu (Stringů)
     public static void sendMessage(final String message){
         Thread t = new Thread(new Runnable() {
             @Override
@@ -61,7 +66,7 @@ public class NetworkService {
         });
         t.start();
     }
-
+    // metoda pro posílná zpráv v samostatném threadu (pole Stringů)
     public static void sendMessage(final String[] messages){
         Thread t = new Thread(new Runnable() {
             @Override
@@ -74,6 +79,7 @@ public class NetworkService {
         t.start();
     }
 
+    // metoda pro posílná zpráv v samostatném threadu (Objektů)
     public static void sendMessage(final Object messages){
         Thread t = new Thread(new Runnable() {
             @Override
@@ -88,5 +94,4 @@ public class NetworkService {
         });
         t.start();
     }
-
 }

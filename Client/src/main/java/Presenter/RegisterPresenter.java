@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
+// třída příjmá data z registerView a předává je registerModelu
 public class RegisterPresenter extends Presenter {
 
     private RegisterView view;
@@ -48,6 +49,5 @@ public class RegisterPresenter extends Presenter {
         }catch(IOException e){
             System.out.println("Scene switch failed");
         }
-
     }
 }

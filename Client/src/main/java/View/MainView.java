@@ -2,7 +2,6 @@ package View;
 
 import Model.ProductData;
 import Presenter.MainPresenter;
-import Services.SceneService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,13 +16,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+// view pro hlavní obrazovku, předává data presenteru
 public class MainView extends View implements Initializable {
 
     private MainPresenter presenter;
@@ -42,18 +40,18 @@ public class MainView extends View implements Initializable {
     @FXML
     public TableColumn<ProductData, String> price;
 
+    // metoda volaná po stisknutí tlačítka refresh, volá metodu z presenteru
     public void refreshProducts(){
         presenter.getAllProducts(true);
     }
 
+    // metoda volaná po stisknutí tlačítka buy, vezme údaje z table view a předá presenteru
     public void buyProduct(){
-        if(presenter.buyProduct(table.getSelectionModel().getSelectedItem().getProductID())){
+        if(presenter.buyProduct(table.getSelectionModel().getSelectedItem())){
             table.getItems().remove(table.getSelectionModel().getSelectedItem());
             table.refresh();
         }
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,22 +65,20 @@ public class MainView extends View implements Initializable {
         presenter.getAllProducts(false);
     }
 
+    // plní sloupečky datama v tableView produktů
     public void setTableData(List<ProductData> products) {
-//        for(ProductData data : list){
-//            System.out.println(data.getProductID() + " " + data.getProductName() + " " + data.getCategory() + " " + data.getProductDescription() + " " + data.getProductPrice());
-//        }
         ObservableList<ProductData> list = FXCollections.observableArrayList();
         list.addAll(products);
         table.getItems().clear();
         table.setItems(list);
     }
 
+    // metoda volaná po stisknutí tlačíka show detail, bere data z tableView a předává presenteru
     public void showPicture(ActionEvent actionEvent) {
-
         presenter.showPicture(table.getSelectionModel().getSelectedItem().getProductID());
-
     }
 
+    // nastavuje vyskakovací okno a vkládá obrázek produktu
     public void showPictureWindow(byte[] picture) {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);

@@ -8,18 +8,20 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+// třída pro spuštění klienta
 public class ClientLauncher extends Application {
 
+    // pří spuštění se nastaví defaultní scéna na loginScreen
     @Override
     public void start(final Stage primaryStage) throws Exception{
         SceneService.setDefaultScene(primaryStage);
-
     }
 
     public static void main(String[] args) {
         String hostName = "127.0.0.1";
         int portNumber = 36936;
 
+        // spuštění klienta
         try (Socket echoSocket = new Socket(hostName, portNumber);
              InputStream is = echoSocket.getInputStream();
              OutputStream os = echoSocket.getOutputStream();

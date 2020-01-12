@@ -2,6 +2,8 @@ package Presenter;
 
 import Services.SceneService;
 
+// obecná třída presenter, která má metodu pro otevírání obrazovke
+// veškeré presentery dědí od této třídy
 public class Presenter {
 
     public void openWindow(String scene){

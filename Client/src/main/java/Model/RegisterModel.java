@@ -6,6 +6,7 @@ import Services.UserService;
 
 import java.io.IOException;
 
+// předává data registerPresenteru, posílá zprávu serveru, že uživatel chce zaregistrovat
 public class RegisterModel {
     private RegisterPresenter presenter;
 
@@ -17,6 +18,7 @@ public class RegisterModel {
     // pošle se jak celé pole, tak zpráva o tom, že uživatel žádá o registraci
     // dále očekává zpátky od serveru zprávu, zda registrace proběhla úspěšně nebo neúspěšně, podle
     // této zprávý volá funkce registerPresenteru
+    // po registraci také uchovává informace o uživateli, které jsou dále předány presenteru
     public void registerUser(String email, String name, String city, String country, String ZIP, String password) {
         String[] data = new String[]{email, name, city, country, ZIP, password};
         NetworkService.sendMessage(NetworkService.REGISTER);

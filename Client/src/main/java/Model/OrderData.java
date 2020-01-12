@@ -2,6 +2,7 @@ package Model;
 
 import javafx.beans.property.SimpleStringProperty;
 
+// třída pro uchování dat o objednávkách, předávají se do tableView objednávek
 public class OrderData {
 
     private SimpleStringProperty orderNumber;
@@ -22,10 +23,7 @@ public class OrderData {
         return orderDate.get();
     }
 
-
     public String getProductName() {
         return productName.get();
     }
-
-
 }

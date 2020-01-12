@@ -1,8 +1,8 @@
 package Model;
 
 import Presenter.ProfilePresenter;
-import Presenter.RegisterPresenter;
 
+// model třída profilu, předává data presenteru
 public class ProfileModel {
     private ProfilePresenter presenter;
 

@@ -1,22 +1,14 @@
 package org.example;
 
 import Model.Entities.*;
-import Services.NetworkService;
-import javafx.scene.effect.Bloom;
 import org.example.DAO.*;
 import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-
-
-import javax.jws.soap.SOAPBinding;
 
 public class ServerThread implements Runnable {
 
@@ -208,18 +200,24 @@ public class ServerThread implements Runnable {
     }
 
     private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {
-        String data = in.readLine();
-        Product prodToRemove = ProductDAO.selectProduct(data);
-        String productName = prodToRemove.getProductName();
-        int userID = UserDAO.selectUserID(loggedUser);
-        int categoryID = ProductDAO.selectCategoryID(productName);
+        try {
+            String data = in.readLine();
+            Product prodToRemove = ProductDAO.selectProduct(data);
+            String productName = prodToRemove.getProductName();
+            int userID = UserDAO.selectUserID(loggedUser);
+            int categoryID = ProductDAO.selectCategoryID(productName);
 
-        if(ProductDAO.removeProduct(productName, userID) && CategoryDAO.deleteCategory(categoryID)){
-            out.println(REMOVE_PRODUCT_SUCCESS);
-            System.out.println("success removing product");
-        } else{
+            if (ProductDAO.removeProduct(productName, userID) && CategoryDAO.deleteCategory(categoryID)) {
+                out.println(REMOVE_PRODUCT_SUCCESS);
+                System.out.println("success removing product");
+            } else {
+                out.println(REMOVE_PRODUCT_FAIL);
+                System.out.println("Fail removing product");
+                out.println(REMOVE_PRODUCT_FAIL);
+            }
+        } catch (Exception e){
+            System.out.println(e);
             out.println(REMOVE_PRODUCT_FAIL);
-            System.out.println("Fail removing product");
         }
     }
 
@@ -275,17 +273,6 @@ public class ServerThread implements Runnable {
             for(String adressValue : adressDataArray){
                 out.println(adressValue);
             }
-
-
-            for(int i = 0; i < adressDataArray.length; i++){
-                System.out.println(adressDataArray[i]);
-            }
-
-            for(int i = 0; i < 2; i++){
-                System.out.println(userData[i]);
-            }
-
-//            out.println(loggedUser);
         } else{
             System.out.println("Error while authorizing user.");
             out.println(LOGIN_FAIL);

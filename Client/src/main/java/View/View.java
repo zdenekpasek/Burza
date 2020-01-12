@@ -5,6 +5,8 @@ import Services.SceneService;
 
 import java.io.IOException;
 
+// obecné view, které má metody společné pro všechna view
+// veškerá view dědí od této třídy
 public class View {
 
     private Presenter presenter;
@@ -17,6 +19,7 @@ public class View {
         }
     }
 
+    // přepínání scén
     public void goToProfileScreen(){
        changeScene("profileScreen.fxml");
     }
@@ -35,6 +38,7 @@ public class View {
         changeScene("removeProductScreen.fxml");
     }
 
+    // odhlášení uživatele a přepnutí scény na loginScreen
     public void logOut() {
        changeScene("loginScreen.fxml");
         System.out.println("click");

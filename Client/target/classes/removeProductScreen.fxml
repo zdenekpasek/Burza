@@ -70,6 +70,16 @@
                </font>
             </Button>
             <Label fx:id="productLabel" layoutX="420.0" layoutY="118.0" prefHeight="30.0" prefWidth="127.0" />
+            <Label fx:id="removeSuccLabel" layoutX="407.0" layoutY="200.0" prefHeight="17.0" prefWidth="241.0" textFill="#82ff4d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="removeFailLabel" layoutX="375.0" layoutY="214.0" prefHeight="17.0" prefWidth="255.0" textFill="#ff3a3a">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />

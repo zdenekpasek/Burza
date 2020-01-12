@@ -6,18 +6,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// view pro přidávání produktů, předává data presenteru
 public class AddProductView extends View implements Initializable {
 
     private AddProductPresenter presenter;
@@ -33,7 +31,6 @@ public class AddProductView extends View implements Initializable {
 
     @FXML
     private TextField priceInput;
-
 
     @FXML
     private TextField categoryInput;
@@ -56,6 +53,7 @@ public class AddProductView extends View implements Initializable {
     @FXML
     private Label errorProductLabel;
 
+    // cesta k souboru (obrázku produktu)
     private String chosenFilePath = "";
 
     // validuje jméno produktu podle regulárního výrazu
@@ -123,11 +121,15 @@ public class AddProductView extends View implements Initializable {
         presenter.validProduct(name, description, price, chosenFilePath, categoryInput.getText());
     }
 
+    // metoda volána po úspěšném přidání produktu
+    // nastaví a zobrazí label product added
     public void productAdded(){
         addedProductLabel.setText("Product added!");
         addedProductLabel.setVisible(true);
     }
 
+    // metoda volána po neúspěšném přidání produktu
+    // nastaví a zobrazí label error while adding product
     public void productNotAdded() {
         errorProductLabel.setText("Error while adding product!");
         errorProductLabel.setVisible(true);
@@ -137,7 +139,7 @@ public class AddProductView extends View implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new AddProductPresenter(this);
 
-
+        // listener pro priceInput - je možné zadávat jen čísla
         priceInput.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -147,7 +149,6 @@ public class AddProductView extends View implements Initializable {
                 }
             }
         });
-
     }
 
 

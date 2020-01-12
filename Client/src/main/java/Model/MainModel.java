@@ -17,7 +17,7 @@ public class MainModel {
 
     private MainPresenter presenter;
 
-    // uchovává produkty v listu produktů, aby se nemuseli pokaždé načítat z db
+    // uchovává produkty v listu produktů, aby se nemuseli pokaždé načítat z databáze
     static List<ProductData> list = new ArrayList<>();
 
     public MainModel(MainPresenter presenter){
@@ -59,12 +59,13 @@ public class MainModel {
     // pošle serveru zprávu, že chce uživatel koupit produkt podle productID
     // productID pošlu serveru jak String
     // jakmile klient dostane zprávu zpět, vrací true po úspěšném nákupu a naopak
-    public boolean buyProduct(String productID) {
+    public boolean buyProduct(ProductData productData) {
         try{
             NetworkService.sendMessage(NetworkService.BUY_PRODUCT);
-            NetworkService.sendMessage(productID);
+            NetworkService.sendMessage(productData.getProductID());
             if(NetworkService.readMessage().equals(NetworkService.BUY_PRODUCT_SUCCESS)){
                 System.out.println("Success");
+                list.remove(productData);
                 return true;
             }else {
                 System.out.println("Test Failed");

@@ -2,6 +2,7 @@ package Model;
 
 import javafx.beans.property.SimpleStringProperty;
 
+// třída pro uchování dat o produktech, předávají se do tableView produktů
 public class ProductData {
 
     private SimpleStringProperty productID;

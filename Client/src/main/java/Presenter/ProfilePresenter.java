@@ -1,10 +1,10 @@
 package Presenter;
 
 import Model.ProfileModel;
-import Services.SceneService;
 import Services.UserService;
 import View.ProfileView;
 
+// třída příjmá data z profileView a předává je profileModelu
 public class ProfilePresenter extends Presenter{
 
     private ProfileView view;

@@ -1,19 +1,15 @@
 package View;
 
 import Presenter.ProfilePresenter;
-import Services.SceneService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// view pro obrazovku profilu, předává data presenteru
 public class ProfileView extends View implements Initializable  {
 
     @FXML
@@ -42,11 +38,10 @@ public class ProfileView extends View implements Initializable  {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         presenter = new ProfilePresenter(this);
-
     }
 
+    // bere data z presenteru a nastavuje informace o uživateli
     public void setUserProfile(String userName, String email, String country, String city, String adressZIP){
         cityLabelFromDb.setText(city);
         nameLabelFromDb.setText(userName);

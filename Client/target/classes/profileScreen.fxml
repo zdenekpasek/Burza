@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,7 +21,7 @@
             </Label>
             <ImageView fitHeight="106.0" fitWidth="189.0" layoutX="32.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/monkas.png" />
+                  <Image url="@img/person.png" />
                </image>
             </ImageView>
             <VBox layoutX="155.0" layoutY="21.0" prefHeight="230.0" prefWidth="82.0" spacing="20.0">
@@ -49,11 +47,6 @@
                      </font>
                   </Label>
                   <Label text="ZIP:" textFill="#4a4a4a">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label text="Orders:" textFill="#4a4a4a">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -104,19 +97,6 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="560.0" layoutY="49.0" prefHeight="30.0" prefWidth="158.0" promptText="Search" style="-fx-background-radius: 3;" styleClass="textInput" stylesheets="@style/main.css" />
-      <Button layoutX="742.0" layoutY="43.0" maxHeight="40.0" maxWidth="53.0" minHeight="40.0" minWidth="53.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="53.0" styleClass="imageButton" stylesheets="@style/main.css" text="Button">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/ic_shopping_cart_24px.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </graphic>
-      </Button>
       <Button layoutX="824.0" layoutY="43.0" maxHeight="40.0" maxWidth="53.0" minHeight="40.0" minWidth="53.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="53.0" styleClass="imageButton" stylesheets="@style/main.css" text="Button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">

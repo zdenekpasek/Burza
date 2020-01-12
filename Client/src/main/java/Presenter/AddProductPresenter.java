@@ -1,10 +1,7 @@
 package Presenter;
 
 import Model.AddProductModel;
-import Model.BasketModel;
-import Services.SceneService;
 import View.AddProductView;
-import View.BasketView;
 
 public class AddProductPresenter extends Presenter {
 

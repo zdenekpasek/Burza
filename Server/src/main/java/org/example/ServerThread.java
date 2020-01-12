@@ -67,17 +67,6 @@ public class ServerThread{
                     ObjectInputStream objIn = new ObjectInputStream(client.getInputStream());
                     ObjectOutputStream objOut = new ObjectOutputStream(client.getOutputStream());
                     out.println("USERCONNECTED");
-//                    BufferedImage image = ImageIO.read(new File("D:\\NetworkEshop\\Server\\src\\main\\resources\\unknown.png"));
-//
-//                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//                    ImageIO.write(image, "png", byteArrayOutputStream);
-//
-//                    byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
-//                    client.getOutputStream().write(size);
-//                    client.getOutputStream().write(byteArrayOutputStream.toByteArray());
-//
-//                    client.getOutputStream().flush();
-//                    client.getOutputStream().close();
                     handleUserAction(out, in, objIn, objOut);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();

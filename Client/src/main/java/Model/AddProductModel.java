@@ -2,15 +2,11 @@ package Model;
 
 
 import Presenter.AddProductPresenter;
-import Presenter.BasketPresenter;
-
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Arrays;
-
 import Services.NetworkService;
 
-import javax.imageio.ImageIO;
+
 
 public class AddProductModel {
     private AddProductPresenter presenter;

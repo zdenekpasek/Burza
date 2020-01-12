@@ -34,8 +34,6 @@ public class AddProductView extends View implements Initializable {
     @FXML
     private TextField priceInput;
 
-    @FXML
-    private ComboBox categoryComboBox;
 
     @FXML
     private TextField categoryInput;
@@ -58,11 +56,7 @@ public class AddProductView extends View implements Initializable {
     @FXML
     private Label errorProductLabel;
 
-
-
     private String chosenFilePath = "";
-
-
 
     // validuje jméno produktu podle regulárního výrazu
     // jméno může obsahovat malá, velká písmena, čísla, podtržítko, pomlčku
@@ -143,15 +137,6 @@ public class AddProductView extends View implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         presenter = new AddProductPresenter(this);
 
-        categoryComboBox.getItems().addAll(
-                "Electronics",
-                "Books",
-                "Cars",
-                "Sport",
-                "Music",
-                "Furniture",
-                "Clothing"
-        );
 
         priceInput.textProperty().addListener(new ChangeListener<String>() {
             @Override

@@ -37,5 +37,6 @@ public class View {
 
     public void logOut() {
        changeScene("loginScreen.fxml");
+        System.out.println("click");
     }
 }

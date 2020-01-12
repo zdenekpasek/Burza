@@ -1,7 +1,6 @@
 package org.example.DAO;
 
 import Model.Entities.Orders;
-import Model.Entities.Product;
 import Model.Entities.Users;
 import org.example.HibernateUtil;
 import org.hibernate.Session;
@@ -9,12 +8,12 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
+// DATA ACESS OBJECT, třída která pracuje s databází, tabulka (Order)
 public class OrderDAO {
 
-
+    // přidává objednávku do databáze
     public static Orders addOrder(LocalDateTime orderDate, String orderStatus, String userEmail){
         int productID = 0;
 
@@ -38,6 +37,7 @@ public class OrderDAO {
         return null;
     }
 
+    // selectuje objednávku podle orderNumber, vraíc objekt Orders
     public static Orders selectOrderByOrderNumber(int orderNumber){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -62,6 +62,7 @@ public class OrderDAO {
         return null;
     }
 
+    // selectuje objednávku podle userID a vrací List Orders
     public static List<Orders> selectAllOrdersObj(int userID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import static javax.persistence.GenerationType.*;
 
+// namapovaná třída z databáze (Adress) včetně vazeb
 @Entity(name = "Adress")
 @Table(name = "Adress")
 @Data

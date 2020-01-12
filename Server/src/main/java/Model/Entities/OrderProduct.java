@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
+// namapovaná třída z databáze (OrderProduct) asociační tabulka mezi Order a Product
 @Entity(name = "OrderProduct")
 @Table(name = "OrderProduct")
 @Data

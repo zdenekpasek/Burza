@@ -2,7 +2,6 @@ import Services.SceneService;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
-
 import Services.NetworkService;
 import java.io.*;
 import java.net.Socket;

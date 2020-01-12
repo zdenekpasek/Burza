@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// třída pro obsluhu klienta
 public class ServerThread implements Runnable {
 
     public static final String REGISTER = "1";
@@ -46,6 +47,7 @@ public class ServerThread implements Runnable {
 
     public static final String SHOW_PICTURE = "900";
 
+    // přihlášení uživatel (jeho email)
     private String loggedUser;
     private Socket client;
 
@@ -119,6 +121,7 @@ public class ServerThread implements Runnable {
         }
     }
 
+    // metoda vezme obrázek produktu z databáze a pošle ho uživateli
     private void showPicture(ObjectOutputStream objOut, BufferedReader in) {
         try {
             String productID = in.readLine();
@@ -131,6 +134,8 @@ public class ServerThread implements Runnable {
         }
     }
 
+    // metoda volaná potom, co přijde od klienta požadavek o koupení produktu
+    // vytvoří se objednávka a klientovi se pošle zpráva o úspěchu/neúšpechu
     private void buyProduct(PrintWriter out, BufferedReader in) {
         try {
             String productID = in.readLine();
@@ -149,6 +154,8 @@ public class ServerThread implements Runnable {
         out.println(BUY_PRODUCT_SUCCESS);
     }
 
+    // metoda volaná po tom, co klient žádá o všechny produkty burzy
+    // selectuje produkty z databáze a pošle je zpátky klientovi
     private void getAllProducts(ObjectOutputStream objOut, PrintWriter out) {
         try {
             List<Product> products = ProductDAO.selectAllProductsObj();
@@ -172,6 +179,8 @@ public class ServerThread implements Runnable {
         out.println(GET_ALL_PRODUCTS_SUCCESS);
     }
 
+    // metoda volaná po tom, co klient vyžádá jeho objednávky
+    // pošle objednávky klientovi
     private void getAllOrders(ObjectOutputStream objOut, PrintWriter out){
         try{
             int userID = UserDAO.selectUserID(loggedUser);
@@ -199,6 +208,7 @@ public class ServerThread implements Runnable {
         }
     }
 
+    // vymaže produkt z databáze a pošle klientovi zprávu o úspěchu/neúspěchu
     private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {
         try {
             String data = in.readLine();

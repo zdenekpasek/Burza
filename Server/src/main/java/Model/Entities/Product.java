@@ -10,6 +10,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.AUTO;
 
+// namapovaná třída z databáze (Product) včetně vazeb
 @Entity
 @Table(name = "Product")
 @Data
@@ -35,10 +36,12 @@ public class Product implements Serializable {
     @Column(name = "productPhoto")
     private byte[] productPhoto;
 
+    // vazba na uživatele
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userID")
     private Users user;
 
+    // vazba na kategorii
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoryID")
     private Category category;

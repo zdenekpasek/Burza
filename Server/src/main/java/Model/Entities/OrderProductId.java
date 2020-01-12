@@ -5,10 +5,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+// namapovaná třída z databáze (OrderProduct)
+// slouží k mapování cizích klíču v asociační tabulce OrderProduct
+// vazba M:N
 @Data
 @NoArgsConstructor
 @Embeddable

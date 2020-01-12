@@ -3,12 +3,8 @@ package org.example;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLException;
 
-/**
- * Hello world!
- *
- */
+// třída, která spouští server
 public class ServerLauncher
 {
     public static void main( String[] args )

@@ -1,37 +1,15 @@
 package org.example.DAO;
 
 import Model.Entities.Category;
-import Model.Entities.Product;
-import Model.Entities.Users;
 import org.example.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
-
+// DATA ACESS OBJECT, třída která pracuje s databází, tabulka (Category)
 public class CategoryDAO {
 
-    public static boolean addCategory(Category category){
-        int categoryID = 0;
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            categoryID = (Integer)session.save(category);
-            tx.commit();
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
-            if(tx != null){
-                tx.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return categoryID > 0;
-    }
-
+    // odstraní kategorii podle categoryID, vrátí true nebo false
     public static boolean deleteCategory(int categoryID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -55,24 +33,4 @@ public class CategoryDAO {
         return false;
     }
 
-    public static List<String> getCategories(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-
-        try{
-            tx = session.beginTransaction();
-            Query query = session.createQuery("select categoryName from Category");
-            List<String> categoryNames = (List<String>)query.list();
-            tx.commit();
-            return categoryNames;
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
-            if(tx != null){
-                tx.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
-    }
 }

@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
+// DATA ACESS OBJECT, třída která pracuje s databází, tabulka (Product)
 public class ProductDAO {
 
     // přidá product do databáze, včetně obrázku produktu, cizího klíče usera a kategorie
@@ -35,6 +36,7 @@ public class ProductDAO {
         return productID > 0;
     }
 
+    // odstraní produkt z databáze podle productName a userID
     public static boolean removeProduct(String productName, int userID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -59,6 +61,7 @@ public class ProductDAO {
         return false;
     }
 
+    // vrácí categoryID kde productName je parametr
     public static int selectCategoryID(String productName){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -67,7 +70,6 @@ public class ProductDAO {
             tx = session.beginTransaction();
             Query query = session.createQuery("select category.categoryID from Product WHERE productName = :productName");
             query.setParameter("productName", productName);
-//            Category test = (Category) query.uniqueResult();
             int categoryID = (int)query.uniqueResult();
             tx.commit();
 
@@ -84,6 +86,7 @@ public class ProductDAO {
         return 0;
     }
 
+    // vrátí objekt productu, kde productID je parametr
     public static Product selectProductByProductId(int productID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -107,7 +110,6 @@ public class ProductDAO {
         }
         return null;
     }
-
 
     // selectuje z databáze product podle jména produktu, vrací celý objekt Product
     public static Product selectProduct(String productName){
@@ -133,6 +135,7 @@ public class ProductDAO {
         return null;
     }
 
+    // updatuje product když byl prodaný na productSold = true
     public static boolean updateProductByID(int productID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -156,28 +159,7 @@ public class ProductDAO {
         return false;
     }
 
-    public static List<Object[]> selectAllProducts(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-
-        try{
-            tx = session.beginTransaction();
-            Query query = session.createQuery("select productName, productDescription, productPrice, productPhoto from Product");
-            List<Object[]> allProductsFromDb = (List<Object[]>)query.list();
-            tx.commit();
-
-            return allProductsFromDb;
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
-            if(tx != null){
-                tx.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
-    }
-
+    // vrací list produktů
     public static List<Product> selectAllProductsObj(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -199,7 +181,5 @@ public class ProductDAO {
         }
         return null;
     }
-
-
 
 }

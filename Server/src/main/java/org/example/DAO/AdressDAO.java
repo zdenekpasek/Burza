@@ -7,8 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
 
+// DATA ACESS OBJECT, třída která pracuje s databází, tabulka (Adress)
 public class AdressDAO {
 
     // přídá adresu do databáze včetně cizího klíče Usera, podle kterého vím, která adresa patří určitému uživateli
@@ -33,6 +33,7 @@ public class AdressDAO {
         return userId > 0;
     }
 
+    // vrací pole objektů adressCity, adressCountry, adressZIP z adresy, kde je parametrem userID
     public static Object[] selectAdress(int userID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -56,25 +57,4 @@ public class AdressDAO {
         return null;
     }
 
-    public static List<String> getAdressDetails(String userID){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-
-        try{
-            tx = session.beginTransaction();
-            Query query = session.createQuery("select adressCity, adressCountry from Adress where userID= : userID");
-            query.setParameter("userID", userID);
-            List<String> userDetails = (List<String>)query.list();
-            tx.commit();
-            return userDetails;
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
-            if(tx != null){
-                tx.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
-    }
 }

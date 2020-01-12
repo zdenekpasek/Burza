@@ -2,16 +2,13 @@ package Model.Entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
+// namapovaná třída z databáze (Orders) včetně vazeb
 @Entity
 @Table(name = "Orders")
 @Data
@@ -28,27 +25,12 @@ public class Orders implements Serializable{
     @Column(name = "orderStatus", nullable = false, length = 20)
     private String orderStatus;
 
-//    @OneToMany(
-//            mappedBy = "order",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<OrderProduct> products = new ArrayList<>();
 
     public void addProduct(Product product){
         OrderProduct orderProduct = new OrderProduct(this, product);
         //products.add(orderProduct);
         product.getOrders().add(orderProduct);
     }
-
-//    public void removeProduct(Product product){
-//        for (Iterator<OrderProduct> iterator = products.iterator();
-//            iterator.hasNext();){
-//            OrderProduct orderProduct = iterator.next();
-//
-//            if(orderProduct.getOrder().)
-//        }
-//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID")

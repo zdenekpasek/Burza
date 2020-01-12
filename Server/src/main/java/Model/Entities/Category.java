@@ -4,12 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import static javax.persistence.GenerationType.*;
 
-
+// namapovaná třída z databáze (Category) včetně vazeb
 @Entity
 @Table(name = "Category")
 @Data
@@ -27,14 +24,6 @@ public class Category implements Serializable{
     @Column(name = "categoryDescription", nullable = false, length = 30)
     private String categoryDescription;
 
-//    @OneToMany
-//    private List<Product> products = new ArrayList<>();
-
-//    @OneToMany(
-//            mappedBy = "category",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product){
     //    products.add(product);

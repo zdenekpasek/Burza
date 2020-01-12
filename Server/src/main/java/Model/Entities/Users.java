@@ -9,6 +9,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
+// namapovaná třída z databáze (Users) včetně vazeb
 @Entity(name = "Users")
 @Table(name = "Users")
 @Data
@@ -28,12 +29,15 @@ public class Users implements Serializable {
     @Column(name = "userPassword", nullable = false, length = 30)
     private String userPassword;
 
+    // vazba na adresu
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Adress> adresses = new ArrayList<>();
 
+    // vazba na product
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
+    // vazba na objednávku
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orders> orders = new ArrayList<>();
 

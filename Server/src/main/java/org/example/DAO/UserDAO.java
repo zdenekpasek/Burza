@@ -1,14 +1,13 @@
 package org.example.DAO;
 
-import Model.Entities.Adress;
 import Model.Entities.Users;
 import org.example.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
 
+// DATA ACESS OBJECT, třída která pracuje s databází, tabulka (User)
 public class UserDAO {
 
     // vrátí z databáze objekt Usera podle emailu
@@ -35,6 +34,7 @@ public class UserDAO {
         return null;
     }
 
+    // vrací userID podle userEmailu
     public static int selectUserID(String email){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -127,28 +127,6 @@ public class UserDAO {
             session.close();
         }
         return "false";
-    }
-
-    public static List<String> getUserDetails(String email){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-
-        try{
-            tx = session.beginTransaction();
-            Query query = session.createQuery("select userName, userEmail from Users where userEmail= :email");
-            query.setParameter("email", email);
-            List<String> userDetails = (List<String>)query.list();
-            tx.commit();
-            return userDetails;
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
-            if(tx != null){
-                tx.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
     }
 
 }

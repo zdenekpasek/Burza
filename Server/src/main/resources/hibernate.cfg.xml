@@ -12,7 +12,7 @@
 
         <mapping class="Model.Entities.Adress" />
         <mapping class="Model.Entities.Category" />
-        <mapping class="Model.Entities.Order" />
+        <mapping class="Model.Entities.Orders" />
         <mapping class="Model.Entities.OrderProduct" />
         <mapping class="Model.Entities.OrderProductId" />
         <mapping class="Model.Entities.Product" />

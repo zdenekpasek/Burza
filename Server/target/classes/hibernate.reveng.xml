@@ -4,7 +4,7 @@
     <schema-selection match-catalog="FleaMarket" match-schema="dbo"/>
     <table-filter match-name="Adress"/>
     <table-filter match-name="Category"/>
-    <table-filter match-name="Order"/>
+    <table-filter match-name="Orders"/>
     <table-filter match-name="OrderProduct"/>
     <table-filter match-name="Product"/>
     <table-filter match-name="Users"/>

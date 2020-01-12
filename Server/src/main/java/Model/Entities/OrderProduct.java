@@ -18,7 +18,7 @@ public class OrderProduct implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderNumber")
-    private Order order;
+    private Orders order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productID")
@@ -44,7 +44,7 @@ public class OrderProduct implements Serializable {
         return Objects.hash(order, product);
     }
 
-    public OrderProduct(Order order, Product product) {
+    public OrderProduct(Orders order, Product product) {
         this.order = order;
         this.product = product;
         this.id = new OrderProductId(order.getOrderNumber(), product.getProductID());

@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import Model.Entities.Order;
+import Model.Entities.Orders;
 import Model.Entities.Users;
 import org.example.HibernateUtil;
 import org.hibernate.Session;
@@ -19,7 +19,7 @@ public class OrderDAO {
         try{
             tx = session.beginTransaction();
             Users user = UserDAO.selectUser(userEmail);
-            Order order = new Order(orderDate, orderStatus, user);
+            Orders order = new Orders(orderDate, orderStatus, user);
             productID = (Integer)session.save(order);
             tx.commit();
         } catch (Exception ex){

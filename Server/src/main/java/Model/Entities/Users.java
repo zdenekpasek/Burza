@@ -35,7 +35,7 @@ public class Users implements Serializable {
     private List<Product> products = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
+    private List<Orders> orders = new ArrayList<>();
 
 //    @OneToMany(
 //            mappedBy = "user",
@@ -71,7 +71,7 @@ public class Users implements Serializable {
         product.setUser(null);
     }
 
-    public void addOrder(Order order){
+    public void addOrder(Orders order){
         orders.add(order);
         order.setUser(this);
     }

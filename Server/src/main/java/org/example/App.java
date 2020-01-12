@@ -1,21 +1,8 @@
 package org.example;
 
-import Model.Entities.Category;
-import Model.Entities.Order;
-import Model.Entities.Product;
-import Model.Entities.Users;
-import javafx.collections.ObservableList;
-import org.example.DAO.CategoryDAO;
 import org.example.DAO.OrderDAO;
-import org.example.DAO.ProductDAO;
-import org.example.DAO.UserDAO;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Objects;
 
 public class App {
     public static void main(String[] args) {

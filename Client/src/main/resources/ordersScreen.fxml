@@ -20,13 +20,18 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TableView prefHeight="414.0" prefWidth="906.0">
+            <TableView fx:id="table" layoutX="10.0" prefHeight="406.0" prefWidth="690.0">
               <columns>
-                <TableColumn prefWidth="190.0" text="Name" />
-                <TableColumn prefWidth="190.0" text="Date" />
-                  <TableColumn prefWidth="190.0" text="Total price" />
+                <TableColumn fx:id="orderNumber" prefWidth="234.0" text="Order Number" />
+                <TableColumn fx:id="orderDate" prefWidth="201.0" text="Date" />
+                  <TableColumn fx:id="productName" prefWidth="264.0" text="Product" />
               </columns>
             </TableView>
+            <Button layoutX="736.0" layoutY="26.0" maxHeight="30.0" maxWidth="138.0" minHeight="30.0" minWidth="138.0" mnemonicParsing="false" onAction="#refreshOrders" prefHeight="30.0" prefWidth="138.0" style="-fx-background-radius: 3;" styleClass="productsButton" stylesheets="@style/main.css" text="REFRESH">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />

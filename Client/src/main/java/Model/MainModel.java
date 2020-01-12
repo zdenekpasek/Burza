@@ -26,6 +26,7 @@ public class MainModel {
 
     // metoda pošle serveru zprávu o tom, že chce získat veškeré produkty burzy
     // produkty získá ze serveru a naplní list, který předá presenteru
+    // pokud jsou data již načtena, vezme produkty z paměti, pokud ne, z databáze
     public void handleServerAction(boolean refresh){
         if(list.isEmpty() || refresh){
             try{

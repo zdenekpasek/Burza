@@ -39,9 +39,6 @@ public class App {
         }
 
 
-
-
-
 //        if(OrderProductDAO.addProductToOrder(46, 1)){
 //            System.out.println("Success adding product to order");
 //        } else{

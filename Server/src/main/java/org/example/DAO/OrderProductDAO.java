@@ -67,7 +67,7 @@ public class OrderProductDAO {
 
         try{
             tx = session.beginTransaction();
-            Query query = session.createQuery("select productID from OrderProduct where orderNumber = :orderNumber");
+            Query query = session.createQuery("select product.productID from OrderProduct where orderNumber = :orderNumber");
             query.setParameter("orderNumber", orderNumber);
             int productID = (int)query.uniqueResult();
             tx.commit();

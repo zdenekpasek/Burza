@@ -2,6 +2,7 @@ package org.example;
 
 import Model.Entities.*;
 import Services.NetworkService;
+import javafx.scene.effect.Bloom;
 import org.example.DAO.*;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -80,11 +81,6 @@ public class ServerThread implements Runnable {
     }
 
 
-    private void sendCategories(PrintWriter out){
-        NetworkService.sendMessage(NetworkService.CATEGORY_SEND);
-        NetworkService.sendMessage(Objects.requireNonNull(CategoryDAO.getCategories()).toString());
-    }
-
 
     // metoda pro obsluhu klienta, příjmá zprávy od klienta a podle nich se volají specifické metody
     private void handleUserAction(PrintWriter out, BufferedReader in, ObjectInputStream objIn,  ObjectOutputStream objOut) throws IOException, ClassNotFoundException {
@@ -123,6 +119,7 @@ public class ServerThread implements Runnable {
                     getAllOrders(objOut, out);
                     break;
                 }
+
                 default: {
                     System.out.println("Wrong message   " + message);
                 }
@@ -185,13 +182,29 @@ public class ServerThread implements Runnable {
 
     private void getAllOrders(ObjectOutputStream objOut, PrintWriter out){
         try{
-
+            int userID = UserDAO.selectUserID(loggedUser);
+            List<Orders> ordersList = OrderDAO.selectAllOrdersObj(userID);
+            List<String[]> ordersStrings = new ArrayList<>();
+            for(Orders o : ordersList){
+                try {
+                    int orderNumber = o.getOrderNumber();
+                    int productID = OrderProductDAO.selectProductID(orderNumber);
+                    Product product = ProductDAO.selectProductByProductId(productID);
+                    String[] convertedOrders = new String[4];
+                    convertedOrders[0] = o.getOrderNumber() + "";
+                    convertedOrders[1] = String.valueOf(o.getOrderDate());
+                    convertedOrders[2] = product.getProductName();
+                    ordersStrings.add(convertedOrders);
+                }catch(Exception e){
+                    System.out.println("Failed to find correct order");
+                }
+            }
+            objOut.writeObject(ordersStrings);
+            out.println(GET_ALL_ORDERS_SUCCESS);
         }catch(Exception e){
             System.out.println(e.getMessage());
             out.println(GET_ALL_ORDERS_FAIL);
         }
-        out.println(GET_ALL_ORDERS_SUCCESS);
-
     }
 
     private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {

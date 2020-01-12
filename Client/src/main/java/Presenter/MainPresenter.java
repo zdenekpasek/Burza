@@ -5,6 +5,7 @@ import Model.ProductData;
 import Presenter.Presenter;
 import Services.SceneService;
 import View.MainView;
+import javafx.collections.ObservableList;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class MainPresenter extends Presenter {
         System.out.println(text);
     }
 
-    public void getAllProducts() {
-        model.handleServerAction();
+    public void getAllProducts(boolean refresh) {
+        model.handleServerAction(refresh);
     }
 
     public void setAllProducts(List<ProductData> products) {

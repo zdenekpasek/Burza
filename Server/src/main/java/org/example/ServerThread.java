@@ -17,7 +17,7 @@ import java.util.Objects;
 
 import javax.jws.soap.SOAPBinding;
 
-public class ServerThread{
+public class ServerThread implements Runnable {
 
     public static final String REGISTER = "1";
     public static final String LOGIN = "2";
@@ -54,12 +54,13 @@ public class ServerThread{
     public static final String SHOW_PICTURE = "900";
 
     private String loggedUser;
+    private Socket client;
 
     public ServerThread(final Socket client){
-        new Thread(new Runnable() {
+        this.client = client;
+    }
 
-            @Override
-            public void run() {
+    public void run(){
                 System.out.println("Thread running");
                 try {
                     PrintWriter out = new PrintWriter(client.getOutputStream(), true);
@@ -76,9 +77,8 @@ public class ServerThread{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-        }).run();
     }
+
 
     private void sendCategories(PrintWriter out){
         NetworkService.sendMessage(NetworkService.CATEGORY_SEND);

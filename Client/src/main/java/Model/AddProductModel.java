@@ -6,11 +6,14 @@ import java.io.*;
 import java.util.Arrays;
 import Services.NetworkService;
 
-
-
+// předává data addProductPresenteru, posílá zprávy serveru o operaci přidání produktu, včetně inputů od uživatele
 public class AddProductModel {
     private AddProductPresenter presenter;
 
+    // metoda převezme inputy uživatele z addProductPresenteru, jméno produktu, popis, cena, cesta k obrázku
+    // z cesty k obrázku produktu vytvoří file a převede ne pole bytů, následně veškerá data pošle serveru
+    // (obrázek jako objekt, ostatní data jako pole stringů), zároveň pošle zprávu serveru, že chce přidat produkt
+    // metoda čeká na odpověd, další řízení se předává presenteru
     public void addProduct(String productName, String productDescription, int productPrice, String productPhotoPath, String category) {
         File file = new File(productPhotoPath);
         byte[] bFile = new byte[(int) file.length()];
@@ -46,19 +49,6 @@ public class AddProductModel {
             ex.printStackTrace();
         }
     }
-
-
-    private void handleServerAction(PrintWriter out, BufferedReader in) throws IOException {
-        while(true){
-            String message = in.readLine();
-            if(message.equals(NetworkService.CATEGORY_SEND)){
-                String categories = in.readLine();
-                System.out.println(categories);
-                }
-
-            }
-        }
-
 
     public AddProductModel(AddProductPresenter presenter){
         this.presenter = presenter;

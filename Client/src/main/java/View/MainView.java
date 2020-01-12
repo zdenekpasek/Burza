@@ -43,7 +43,7 @@ public class MainView extends View implements Initializable {
     public TableColumn<ProductData, String> price;
 
     public void refreshProducts(){
-        presenter.getAllProducts();
+        presenter.getAllProducts(true);
     }
 
     public void buyProduct(){
@@ -63,14 +63,16 @@ public class MainView extends View implements Initializable {
         category.setCellValueFactory(new PropertyValueFactory<ProductData, String>("category"));
         description.setCellValueFactory(new PropertyValueFactory<ProductData, String>("productDescription"));
         price.setCellValueFactory(new PropertyValueFactory<ProductData, String>("productPrice"));
+
+        presenter.getAllProducts(false);
     }
 
     public void setTableData(List<ProductData> products) {
-        ObservableList<ProductData> list = FXCollections.observableArrayList();
-        list.addAll(products);
 //        for(ProductData data : list){
 //            System.out.println(data.getProductID() + " " + data.getProductName() + " " + data.getCategory() + " " + data.getProductDescription() + " " + data.getProductPrice());
 //        }
+        ObservableList<ProductData> list = FXCollections.observableArrayList();
+        list.addAll(products);
         table.getItems().clear();
         table.setItems(list);
     }

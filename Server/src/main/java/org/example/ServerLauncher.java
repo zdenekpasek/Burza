@@ -18,8 +18,10 @@ public class ServerLauncher
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
             System.out.println("Server is running");
             while (true) {
+                System.out.println("Waiting for new client");
                 clientSocket = serverSocket.accept();
-                ServerThread serverThread = new ServerThread(clientSocket);
+                Thread thread = new Thread(new ServerThread(clientSocket));
+                thread.start();
                 System.out.println("New socket detected");
             }
         } catch (

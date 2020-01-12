@@ -18,6 +18,11 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Label layoutX="30.0" layoutY="44.0" text="Remove product" textFill="#6bb5ff">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
       <Button layoutX="824.0" layoutY="43.0" maxHeight="40.0" maxWidth="53.0" minHeight="40.0" minWidth="53.0" mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="53.0" styleClass="imageButton" stylesheets="@style/main.css" text="Button">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -48,11 +53,6 @@
       </HBox>
       <AnchorPane layoutX="-6.0" layoutY="94.0" prefHeight="414.0" prefWidth="906.0" style="-fx-background-color: #ededed;" styleClass="box" stylesheets="@style/main.css">
          <children>
-            <Label layoutX="37.0" layoutY="-46.0" text="Remove product" textFill="#6bb5ff">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
             <HBox layoutX="384.0" layoutY="311.0" prefHeight="30.0" prefWidth="138.0" spacing="50.0" />
             <VBox layoutX="318.0" layoutY="72.0" prefHeight="45.0" prefWidth="275.0" spacing="30.0">
                <children>

@@ -18,6 +18,7 @@ public class NetworkService {
     public static final String CATEGORY_SEND = "6";
     public static final String BUY_PRODUCT = "7";
     public static final String GET_ALL_PRODUCTS = "8";
+    public static final String GET_ALL_ORDERS = "9";
     public static final String SEND_ALL_PRODUCTS = "800";
 
 
@@ -33,10 +34,14 @@ public class NetworkService {
     public static final String GET_ALL_PRODUCTS_SUCCESS = "800";
     public static final String GET_ALL_PRODUCTS_FAIL = "801";
 
+    public static final String GET_ALL_ORDERS_SUCCESS = "900";
+    public static final String GET_ALL_ORDERS_FAIL = "901";
+
     public static final String LOGIN_SUCCESS = "200";
     public static final String LOGIN_FAIL = "201";
     public static final String REGISTER_SUCCESS = "100";
     public static final String REGISTER_FAIL = "101";
+
     public static final String SHOW_PICTURE = "900";
 
     public static String readMessage() throws IOException {

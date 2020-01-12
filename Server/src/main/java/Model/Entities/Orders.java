@@ -50,7 +50,7 @@ public class Orders implements Serializable{
 //        }
 //    }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID")
     private Users user;
 

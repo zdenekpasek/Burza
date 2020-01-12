@@ -16,7 +16,7 @@ public class OrderProduct implements Serializable {
     @EmbeddedId
     private OrderProductId id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("orderNumber")
     @JoinColumn(name = "orderNumber")
     private Orders order;

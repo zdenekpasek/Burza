@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class OrderDAO {
 
@@ -51,6 +52,29 @@ public class OrderDAO {
             return order;
         } catch (Exception ex){
             ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static List<Orders> selectAllOrdersObj(int userID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Orders where userID = :userID");
+            query.setParameter("userID", userID);
+            List<Orders> allOrdersFromDb = (List<Orders>)query.list();
+            tx.commit();
+
+            return allOrdersFromDb;
+        } catch (Exception ex){
             System.out.println(ex.getMessage());
             if(tx != null){
                 tx.rollback();

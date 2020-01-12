@@ -1,7 +1,13 @@
 package org.example;
 
+import Model.Entities.OrderProduct;
+import Model.Entities.Orders;
+import Model.Entities.Product;
+import Model.ProductData;
 import org.example.DAO.OrderDAO;
 import org.example.DAO.OrderProductDAO;
+import org.example.DAO.ProductDAO;
+import org.hibernate.criterion.Order;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,11 +29,24 @@ public class App {
         int productID = 47;
 
 
-        if(OrderProductDAO.addProductToOrder(46, 1)){
-            System.out.println("Success adding product to order");
-        } else{
-            System.out.println("error");
+        OrderDAO.selectAllOrdersObj(23);
+        for(Orders o : OrderDAO.selectAllOrdersObj(23)){
+
+            int orderNumber = o.getOrderNumber();
+            int testId = OrderProductDAO.selectProductID(orderNumber);
+            Product product = ProductDAO.selectProductByProductId(testId);
+            System.out.println(o.getOrderNumber() + " " + o.getOrderDate() + " " + o.getOrderStatus() + " " + product.getProductName());
         }
+
+
+
+
+
+//        if(OrderProductDAO.addProductToOrder(46, 1)){
+//            System.out.println("Success adding product to order");
+//        } else{
+//            System.out.println("error");
+//        }
 
 
 //        String loggedUser = "admin@gmail.com";

@@ -27,6 +27,7 @@ public class ServerThread{
     public static final String CATEGORY_SEND = "6";
     public static final String BUY_PRODUCT = "7";
     public static final String GET_ALL_PRODUCTS = "8";
+    public static final String GET_ALL_ORDERS = "9";
     public static final String SEND_ALL_PRODUCTS = "800";
 
 
@@ -41,6 +42,9 @@ public class ServerThread{
 
     public static final String GET_ALL_PRODUCTS_SUCCESS = "800";
     public static final String GET_ALL_PRODUCTS_FAIL = "801";
+
+    public static final String GET_ALL_ORDERS_SUCCESS = "900";
+    public static final String GET_ALL_ORDERS_FAIL = "901";
 
     public static final String LOGIN_SUCCESS = "200";
     public static final String LOGIN_FAIL = "201";
@@ -122,9 +126,12 @@ public class ServerThread{
                     buyProduct(out, in);
                     break;
                 }
-
                 case SHOW_PICTURE:{
                     showPicture(objOut, in);
+                    break;
+                }
+                case GET_ALL_ORDERS:{
+                    getAllOrders(objOut, out);
                     break;
                 }
                 default: {
@@ -188,6 +195,13 @@ public class ServerThread{
     }
 
     private void getAllOrders(ObjectOutputStream objOut, PrintWriter out){
+        try{
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            out.println(GET_ALL_ORDERS_FAIL);
+        }
+        out.println(GET_ALL_ORDERS_SUCCESS);
 
     }
 

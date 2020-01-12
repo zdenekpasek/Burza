@@ -71,8 +71,11 @@ public class Order implements Serializable{
         this.orderStatus = orderStatus;
     }
 
-    public Order(Date orderDate, String orderStatus) {
+    public Order(Date orderDate, String orderStatus, Users user) {
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
+        this.user = user;
     }
+
+
 }

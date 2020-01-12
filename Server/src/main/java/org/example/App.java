@@ -1,10 +1,12 @@
 package org.example;
 
 import Model.Entities.Category;
+import Model.Entities.Order;
 import Model.Entities.Product;
 import Model.Entities.Users;
 import javafx.collections.ObservableList;
 import org.example.DAO.CategoryDAO;
+import org.example.DAO.OrderDAO;
 import org.example.DAO.ProductDAO;
 import org.example.DAO.UserDAO;
 
@@ -30,7 +32,16 @@ public class App {
 
         int productID = 47;
 
-        ProductDAO.updateProductByID(productID);
+        String loggedUser = "admin@gmail.com";
+
+        if(OrderDAO.addOrder(new Date(), "new", loggedUser)){
+            System.out.println("Successfully added order :]]]");
+        } else{
+            System.out.println("fuck off");
+        }
+
+
+//        ProductDAO.updateProductByID(productID);
 
 
 

@@ -8,10 +8,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -40,7 +47,7 @@ public class MainView extends View implements Initializable {
     }
 
     public void buyProduct(){
-
+        presenter.buyProduct(table.getSelectionModel().getSelectedItem().getProductID());
     }
 
 
@@ -66,5 +73,20 @@ public class MainView extends View implements Initializable {
     }
 
     public void showPicture(ActionEvent actionEvent) {
+
+        presenter.showPicture(table.getSelectionModel().getSelectedItem().getProductID());
+
+    }
+
+    public void showPictureWindow(byte[] picture) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        Image image = new Image(new ByteArrayInputStream(picture));
+        ImageView imageView = new ImageView(image);
+        dialogVbox.getChildren().add(imageView);
+        Scene dialogScene = new Scene(dialogVbox, image.getWidth(), image.getHeight());
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 }

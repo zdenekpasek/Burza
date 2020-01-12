@@ -52,6 +52,8 @@ public class ServerThread{
     public static final String REGISTER_SUCCESS = "100";
     public static final String REGISTER_FAIL = "101";
 
+    public static final String SHOW_PICTURE = "900";
+
     private String loggedUser;
 
     public ServerThread(final Socket client){
@@ -125,6 +127,11 @@ public class ServerThread{
                     buyProduct(out, in);
                     break;
                 }
+
+                case SHOW_PICTURE:{
+                    showPicture(objOut, in);
+                    break;
+                }
                 default: {
                     System.out.println("Wrong message   " + message);
                 }
@@ -132,7 +139,31 @@ public class ServerThread{
         }
     }
 
+    private void showPicture(ObjectOutputStream objOut, BufferedReader in) {
+        try {
+            String productID = in.readLine();
+            Product product = ProductDAO.selectProductByProductId(Integer.parseInt(productID));
+            System.out.println(product.getProductName());
+            objOut.writeObject(product.getProductPhoto());
+            System.out.println("picture sent");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     private void buyProduct(PrintWriter out, BufferedReader in) {
+        try {
+            String productID = in.readLine();
+            if(ProductDAO.updateProductByID(Integer.parseInt(productID))){
+
+            }
+
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            out.println(GET_ALL_PRODUCTS_FAIL);
+        }
+        out.println(GET_ALL_PRODUCTS_SUCCESS);
     }
 
     private void getAllProducts(ObjectOutputStream objOut, PrintWriter out) {
@@ -140,13 +171,15 @@ public class ServerThread{
             List<Product> products = ProductDAO.selectAllProductsObj();
             List<String[]> productStrings = new ArrayList<>();
             for(Product product : products){
-                String[] convertedProducts = new String[5];
-                convertedProducts[0] = product.getProductID() + "";
-                convertedProducts[1] = product.getProductName();
-                convertedProducts[2] = product.getCategory().getCategoryName();
-                convertedProducts[3] = product.getProductDescription();
-                convertedProducts[4] = product.getProductPrice() + "";
-                productStrings.add(convertedProducts);
+                if(product.getProductSold() == null || !product.getProductSold().equals("true")){
+                    String[] convertedProducts = new String[5];
+                    convertedProducts[0] = product.getProductID() + "";
+                    convertedProducts[1] = product.getProductName();
+                    convertedProducts[2] = product.getCategory().getCategoryName();
+                    convertedProducts[3] = product.getProductDescription();
+                    convertedProducts[4] = product.getProductPrice() + "";
+                    productStrings.add(convertedProducts);
+                }
             }
             objOut.writeObject(productStrings);
         }catch(Exception e){

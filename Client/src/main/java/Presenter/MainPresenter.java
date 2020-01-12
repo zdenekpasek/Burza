@@ -30,4 +30,16 @@ public class MainPresenter extends Presenter {
     public void setAllProducts(List<ProductData> products) {
         view.setTableData(products);
     }
+
+    public void buyProduct(String productID) {
+        model.buyProduct(productID);
+    }
+
+    public void showPicture(String productID) {
+        model.showPicture(productID);
+    }
+
+    public void showPictureWindow(byte[] picture) {
+        view.showPictureWindow(picture);
+    }
 }

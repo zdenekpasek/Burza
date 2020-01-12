@@ -44,4 +44,43 @@ public class MainModel {
     }
 
 
+    public void buyProduct(String productID) {
+        try{
+            NetworkService.sendMessage(NetworkService.BUY_PRODUCT);
+            NetworkService.sendMessage(productID);
+            switch(NetworkService.readMessage()){
+                case NetworkService.BUY_PRODUCT_SUCCESS: {
+                    System.out.println("Success");
+                    break;
+                }
+                default:
+                    System.out.println("Failed");
+                    presenter.error();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void showPicture(String productID) {
+        try{
+            System.out.println("Getting picture");
+            NetworkService.sendMessage(NetworkService.SHOW_PICTURE);
+            NetworkService.sendMessage(productID);
+            byte[] picture = (byte[]) NetworkService.readObjectMessage();
+            System.out.println("Got picture");
+            presenter.showPictureWindow(picture);
+//            switch(NetworkService.readMessage()){
+//                case NetworkService.BUY_PRODUCT_SUCCESS: {
+//                    System.out.println("Success");
+//                    break;
+//                }
+//                default:
+//                    System.out.println("Failed");
+//                    presenter.error();
+//            }
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

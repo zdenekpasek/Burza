@@ -28,16 +28,21 @@ public class App {
         String categoryDescription = "ssssss";
         Date date = new Date();
 
+        int productID = 47;
 
-        Users user = new Users(userEmail, userName, userPassword);
+        ProductDAO.updateProductByID(productID);
 
 
-        int categoryID = ProductDAO.selectCategoryID(productName);
 
-//        System.out.println(categoryID);
-        if(CategoryDAO.deleteCategory(categoryID) && ProductDAO.removeProduct(productName, userID)){
-            System.out.println("success");
-        }
+//        Users user = new Users(userEmail, userName, userPassword);
+//
+//
+//        int categoryID = ProductDAO.selectCategoryID(productName);
+//
+////        System.out.println(categoryID);
+//        if(CategoryDAO.deleteCategory(categoryID) && ProductDAO.removeProduct(productName, userID)){
+//            System.out.println("success");
+//        }
 
 
 //        for(Product prod : Objects.requireNonNull(ProductDAO.selectAllProductsObj())){

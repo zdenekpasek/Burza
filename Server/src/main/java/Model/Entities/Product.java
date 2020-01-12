@@ -29,6 +29,9 @@ public class Product implements Serializable {
     @Column(name = "productPrice", nullable = false)
     private Integer productPrice;
 
+    @Column(name = "productSold", nullable = false)
+    private String productSold;
+
     @Column(name = "productPhoto")
     private byte[] productPhoto;
 

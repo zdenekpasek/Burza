@@ -84,6 +84,30 @@ public class ProductDAO {
         return 0;
     }
 
+    public static Product selectProductByProductId(int productID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Product WHERE productID = :productID");
+            query.setParameter("productID", productID);
+            Product product = (Product)query.uniqueResult();
+            tx.commit();
+
+            return product;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
 
     // selectuje z databáze product podle jména produktu, vrací celý objekt Product
     public static Product selectProduct(String productName){
@@ -107,6 +131,29 @@ public class ProductDAO {
             session.close();
         }
         return null;
+    }
+
+    public static boolean updateProductByID(int productID){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("update Product set productSold= 'true' where productID = :productID");
+            query.setParameter("productID", productID);
+            query.executeUpdate();
+            tx.commit();
+
+            return true;
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            if(tx != null){
+                tx.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
     }
 
     public static List<Object[]> selectAllProducts(){

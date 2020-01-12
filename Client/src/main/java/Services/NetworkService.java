@@ -37,6 +37,7 @@ public class NetworkService {
     public static final String LOGIN_FAIL = "201";
     public static final String REGISTER_SUCCESS = "100";
     public static final String REGISTER_FAIL = "101";
+    public static final String SHOW_PICTURE = "900";
 
     public static String readMessage() throws IOException {
         return INPUT.readLine();

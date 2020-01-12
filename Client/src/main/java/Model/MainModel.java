@@ -44,22 +44,22 @@ public class MainModel {
     }
 
 
-    public void buyProduct(String productID) {
+    public boolean buyProduct(String productID) {
         try{
             NetworkService.sendMessage(NetworkService.BUY_PRODUCT);
             NetworkService.sendMessage(productID);
-            switch(NetworkService.readMessage()){
-                case NetworkService.BUY_PRODUCT_SUCCESS: {
-                    System.out.println("Success");
-                    break;
-                }
-                default:
-                    System.out.println("Failed");
-                    presenter.error();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            if(NetworkService.readMessage().equals(NetworkService.BUY_PRODUCT_SUCCESS)){
+                System.out.println("Success");
+                return true;
+            }else {
+                System.out.println("Test Failed");
+                presenter.error();
+                return false;
+             }
+            } catch (IOException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     public void showPicture(String productID) {

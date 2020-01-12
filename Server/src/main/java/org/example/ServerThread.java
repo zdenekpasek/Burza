@@ -1,19 +1,14 @@
 package org.example;
 
-import Model.Entities.Adress;
-import Model.Entities.Category;
-import Model.Entities.Product;
-import Model.Entities.Users;
+import Model.Entities.*;
 import Services.NetworkService;
-import org.example.DAO.AdressDAO;
-import org.example.DAO.CategoryDAO;
-import org.example.DAO.ProductDAO;
-import org.example.DAO.UserDAO;
+import org.example.DAO.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -154,16 +149,19 @@ public class ServerThread{
     private void buyProduct(PrintWriter out, BufferedReader in) {
         try {
             String productID = in.readLine();
-            if(ProductDAO.updateProductByID(Integer.parseInt(productID))){
-
+            LocalDateTime localDate = LocalDateTime.now();
+            if(ProductDAO.updateProductByID(Integer.parseInt(productID)) ){
+                Orders order = OrderDAO.addOrder(localDate, "New", loggedUser);
+                OrderProductDAO.addProductToOrder(Integer.parseInt(productID), order.getOrderNumber());
+                System.out.println("Success");
+            } else{
+                System.out.println("error");
             }
-
-
         }catch(Exception e){
             System.out.println(e.getMessage());
-            out.println(GET_ALL_PRODUCTS_FAIL);
+            out.println(BUY_PRODUCT_FAIL);
         }
-        out.println(GET_ALL_PRODUCTS_SUCCESS);
+        out.println(BUY_PRODUCT_SUCCESS);
     }
 
     private void getAllProducts(ObjectOutputStream objOut, PrintWriter out) {
@@ -187,6 +185,10 @@ public class ServerThread{
             out.println(GET_ALL_PRODUCTS_FAIL);
         }
         out.println(GET_ALL_PRODUCTS_SUCCESS);
+    }
+
+    private void getAllOrders(ObjectOutputStream objOut, PrintWriter out){
+
     }
 
     private void removeProduct(PrintWriter out, BufferedReader in) throws IOException {

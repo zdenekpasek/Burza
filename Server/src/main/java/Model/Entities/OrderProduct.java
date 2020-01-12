@@ -18,13 +18,15 @@ public class OrderProduct implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderNumber")
+    @JoinColumn(name = "orderNumber")
     private Orders order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("productID")
+    @JoinColumn(name = "productID")
     private Product product;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     private Integer quantity;
 
     @Override

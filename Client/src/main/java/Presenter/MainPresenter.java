@@ -31,8 +31,8 @@ public class MainPresenter extends Presenter {
         view.setTableData(products);
     }
 
-    public void buyProduct(String productID) {
-        model.buyProduct(productID);
+    public boolean buyProduct(String productID) {
+       return model.buyProduct(productID);
     }
 
     public void showPicture(String productID) {

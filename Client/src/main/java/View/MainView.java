@@ -47,7 +47,10 @@ public class MainView extends View implements Initializable {
     }
 
     public void buyProduct(){
-        presenter.buyProduct(table.getSelectionModel().getSelectedItem().getProductID());
+        if(presenter.buyProduct(table.getSelectionModel().getSelectedItem().getProductID())){
+            table.getItems().remove(table.getSelectionModel().getSelectedItem());
+            table.refresh();
+        }
     }
 
 

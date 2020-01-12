@@ -5,13 +5,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
-@Entity(name = "Orders")
+@Entity
 @Table(name = "Orders")
 @Data
 @NoArgsConstructor
@@ -21,23 +22,22 @@ public class Orders implements Serializable{
     @Column(name = "orderNumber", unique = true, nullable = false)
     private Integer orderNumber;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "orderDate", nullable = false)
-    private Date orderDate;
+    private LocalDateTime orderDate;
 
     @Column(name = "orderStatus", nullable = false, length = 20)
     private String orderStatus;
 
-    @OneToMany(
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<OrderProduct> products = new ArrayList<>();
+//    @OneToMany(
+//            mappedBy = "order",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<OrderProduct> products = new ArrayList<>();
 
     public void addProduct(Product product){
         OrderProduct orderProduct = new OrderProduct(this, product);
-        products.add(orderProduct);
+        //products.add(orderProduct);
         product.getOrders().add(orderProduct);
     }
 
@@ -66,13 +66,13 @@ public class Orders implements Serializable{
         return this.orderNumber;
     }
 
-    public Orders(Integer orderNumber, Date orderDate, String orderStatus) {
+    public Orders(Integer orderNumber, LocalDateTime orderDate, String orderStatus) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
     }
 
-    public Orders(Date orderDate, String orderStatus, Users user) {
+    public Orders(LocalDateTime orderDate, String orderStatus, Users user) {
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.user = user;

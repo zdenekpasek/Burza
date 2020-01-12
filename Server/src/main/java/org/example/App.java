@@ -1,7 +1,10 @@
 package org.example;
 
 import org.example.DAO.OrderDAO;
+import org.example.DAO.OrderProductDAO;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class App {
@@ -19,13 +22,23 @@ public class App {
 
         int productID = 47;
 
-        String loggedUser = "admin@gmail.com";
 
-        if(OrderDAO.addOrder(new Date(), "new", loggedUser)){
-            System.out.println("Successfully added order :]]]");
+        if(OrderProductDAO.addProductToOrder(46, 1)){
+            System.out.println("Success adding product to order");
         } else{
-            System.out.println("fuck off");
+            System.out.println("error");
         }
+
+
+//        String loggedUser = "admin@gmail.com";
+//        LocalDateTime localDate = LocalDateTime.now();
+//        if(OrderDAO.addOrder(localDate, "pending", loggedUser)){
+//            System.out.println("Successfully added order :]]]");
+//        } else{
+//            System.out.println("fuck off");
+//        }
+
+
 
 
 //        ProductDAO.updateProductByID(productID);
